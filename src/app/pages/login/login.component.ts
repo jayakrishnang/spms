@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { UserLogin } from 'src/app/shared/models/userlogin';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { Subscription } from 'rxjs';
 import { Route, Router } from '@angular/router';
+import { ToastrService, ToastContainerDirective } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   email: any;
   password: any;
   grant_type: any;
-  constructor(private userlogin: UserLogin, private authenticationService: AuthenticationService, private route:Router) {}
+  constructor(private userlogin: UserLogin, private authenticationService: AuthenticationService, private route:Router, private toaster: ToastrService) {}
 
   ngOnInit() {
     this.userdata = this.userlogin.returnUserLoginPostData();
@@ -24,6 +25,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe()
   }
 
+  showError()
+  {
+    this.toaster.error('Invalid Email or Password!', 'Error!',{
+      positionClass: 'toast-bottom-left'
+    });
+  }
   onSubmit()
   {
     
@@ -32,6 +39,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       {
         this.route.navigate(["/dashboard"])
       }
+    },
+    (error) => {
+      this.showError();
     })
   }
 }

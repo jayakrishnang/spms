@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { UserLogin } from './shared/models/userlogin';
+import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -23,7 +24,9 @@ import { UserLogin } from './shared/models/userlogin';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToastrModule.forRoot(),
+    ToastContainerModule
   ],
   declarations: [
     AppComponent,
