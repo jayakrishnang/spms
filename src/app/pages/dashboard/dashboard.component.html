@@ -35,7 +35,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xl-4">
+    <div class="col-xl-4" >
       <div class="card shadow" style="height: 700px;">
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
@@ -44,12 +44,19 @@
             </div>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body scroll-hover">
           <!-- Chart -->
-          <div class="chart">
-            Feed Goes Here
-          </div>
-        </div>
+              <ol class="activity-feed">
+                  <li class="feed-item" *ngFor= "let notification of Notificationslist" [attr.data-content] = "getIcon(notification.notification_type)" [attr.data-time]="notification.created_at | dateAgo" [attr.data-color]="getColor(notification.notification_type)">
+                    <section>
+                      <input type="checkbox" id="expand_1" name="expand_1" />
+                      <label for="expand_1">
+                        {{notification.notification}}
+                      </label>
+                    </section>
+                  </li>
+                </ol>
+            </div>
       </div>
     </div>
   </div>

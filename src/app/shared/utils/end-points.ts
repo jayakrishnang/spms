@@ -19,6 +19,8 @@ export const EndPoints = {
     UserProfile: 'dashboards/me',
     Activity: 'activities',
     Projects: 'projects',
-    Sheets: 'sheets'
+    Sheets: 'sheets',
+    Notifications: 'users/notifications',
+    UserUpdate: 'users'
     
 }
