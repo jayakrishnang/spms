@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -14,7 +14,10 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { UserLogin } from './shared/models/userlogin';
 import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
-
+import { DashboardService } from '../app/pages/dashboard/dashboard.service';
+import { HttpService } from './shared/services/http.service';
+import { InterceptService } from './shared/services/intercept.service';
+import { UserProfileService } from './pages/user-profile/user-profile.service';
 
 @NgModule({
   imports: [
@@ -31,9 +34,21 @@ import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    
   ],
-  providers: [UserLogin],
+  providers: [
+    UserLogin,
+    DashboardService,
+    HttpService,
+    UserProfileService,
+    InterceptService,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: InterceptService,
+			multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
