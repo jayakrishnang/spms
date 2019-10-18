@@ -1,0 +1,26 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+.button {
+    background-color: #2199e8 ;
+    border: none;
+    color: #fff;
+    padding: 8px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding-right: 2rem;
+    margin: 1px 1px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+.send-button{
+    margin-left: 0.5%;
+    height:85%;
+
+}
+
+
+.align-right{
+    text-align: right;
+    padding-right: 2rem;
+}

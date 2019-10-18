@@ -19,6 +19,14 @@ export const EndPoints = {
     UserProfile: 'dashboards/me',
     Activity: 'activities',
     Projects: 'projects',
-    Sheets: 'sheets'
+    Sheets: 'sheets',
+    SheetContent: '/content',
+    Notifications: 'users/notifications',
+    UserUpdate: 'users',
+    PendingApprovals: 'pending_approval',
+    ManagerList: 'users/managers',
+    Approve: 'approve',
+    Reject: 'reject',
+    SendForApproval: 'send_for_approval'
     
 }

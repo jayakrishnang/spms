@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -9,11 +9,18 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { UserLogin } from './shared/models/userlogin';
 import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
+import { DashboardService } from '../app/pages/dashboard/dashboard.service';
+import { HttpService } from './shared/services/http.service';
+import { InterceptService } from './shared/services/intercept.service';
+import { UserProfileService } from './pages/user-profile/user-profile.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SheetsService } from './pages/sheets/sheets.service';
+import { SheetsShowService } from './pages/sheets-show/sheets-show.service';
+import { PendingApprovalsService } from './pages/pending-approvals/pending-approvals.service';
 
 
 @NgModule({
@@ -26,14 +33,32 @@ import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
     RouterModule,
     AppRoutingModule,
     ToastrModule.forRoot(),
-    ToastContainerModule
-  ],
+    ToastContainerModule,
+    ReactiveFormsModule
+    ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    
+    
+    
   ],
-  providers: [UserLogin],
+  providers: [
+    UserLogin,
+    DashboardService,
+    HttpService,
+    UserProfileService,
+    SheetsService,
+    SheetsShowService,
+    PendingApprovalsService,
+    InterceptService,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: InterceptService,
+			multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
