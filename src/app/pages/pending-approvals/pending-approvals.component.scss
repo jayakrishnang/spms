@@ -1,0 +1,60 @@
+.button {
+    background-color: #f11f1f;
+    border: none;
+    color: #fff;
+    padding: 8px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1px 1px;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  .button-container{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    perspective: 1000px;
+    .button-flipper{
+       transition: .8s cubic-bezier(.775, .07, .575, .995);
+       transform-style: preserve-3d;
+       position: absolute;
+       &:hover{
+          transform: rotateX(180deg);
+       }
+    }
+    .front-button{
+       cursor: pointer;
+       width: 260px;
+       height: 60px;
+       background-color: #D35400;
+       border: none;
+       font-size: 2em;
+       color: #fff;
+       backface-visibility: hidden;
+       z-index: 2;
+       transform: rotateX(0deg);
+       position: absolute;
+       box-shadow: 0px 8px 12px #ccc;
+    }
+    .back-button{
+       cursor: pointer;
+       width: 260px;
+       height: 60px;
+       background-color: #26C281;
+       border: none;
+       font-size: 2em;
+       color: #fff;
+       backface-visibility: hidden;
+       transform: rotateX(-180deg);
+       position: relative;
+       box-shadow: 0px 8px 12px #ccc;
+    }
+ }
+ .align-right{
+    text-align: right;
+    padding-right: 2rem;
+}
+  

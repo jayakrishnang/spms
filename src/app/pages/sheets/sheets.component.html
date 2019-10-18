@@ -1,0 +1,63 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0"></h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th class= "th-padding" scope="col"style="text-align: center;">sl.no</th>
+                  <th  class="th-padding"scope="col"style="text-align: center;">Name</th>
+                  <th class="th-padding" scope="col"style="text-align: center;">Hours</th>
+                  <th  class="td-padding"scope="col"style="text-align: center;">Status</th>
+                  <th class="td-padding" scope="col">Total Activities</th>
+                  <th  class="th-padding"scope="col"></th>
+                </tr>
+              </thead>
+                <tr *ngFor= "let sheet of Sheetslist | paginate: { itemsPerPage: 10, currentPage: p }; let i = index ">
+                  <td class="th-padding" style="text-align: center;">
+                    <span class= "center" > {{i+1}}</span>
+                  </td>
+                  <td  class="th-padding" style="text-align: center;">
+                    <span class= "center">{{sheet.name}}</span>
+                  </td>
+                  <td  class="th-padding"style="text-align: center;" >
+                      <span class= "center">
+                       {{sheet.hours}}
+                    </span>
+                  </td>
+                  <td  class="td-padding" style="text-align: center;">
+                      <span class="badge badge-dot mr-4">
+                          <i [attr.class]="getColor(sheet.status)"></i> {{sheet.status}}
+                        </span>
+                    </td>
+                  <td  class="th-padding" >   
+                    <span class= "center"> {{sheet.no_of_activities}}</span>   
+                  </td>
+                 
+                  <td  class="button-padding">
+                   <button [routerLink]="[ '/sheetcontent',sheet.id]" class="button"  type="submit">View</button>
+                  </td>
+                </tr>
+            </table>
+          </div>
+          <div></div>
+          <div class="align-right"> <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  

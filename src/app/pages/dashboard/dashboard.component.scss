@@ -2,7 +2,8 @@
     overflow: hidden;
   }
   .scroll-hover:hover{
-      overflow: auto;
+	  overflow: auto;
+	  overflow-x: hidden;
   }
   body {
 	font-family: 'Open Sans', sans-serif;
@@ -23,7 +24,7 @@
 .activity-feed {
 	list-style-type: none;
 	padding: 0;
-	margin: 10px 50px 50px 30px;
+	margin: 10px 50px 50px 23px;
 	.feed-item {
 		position: relative;
 		min-height: 50px;

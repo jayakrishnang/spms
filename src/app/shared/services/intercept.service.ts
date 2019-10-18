@@ -40,7 +40,13 @@ export class InterceptService implements HttpInterceptor {
 		} else if(request.headers.has('Form-Data')) {
 			console.log('entered form data')
 			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { Authorization: this.authToken} });
-		} else {
+		}
+		 else if(request.headers.has('Content-Type')) 
+		 {	
+			console.log('in application/json')
+			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { Authorization: this.authToken , 'Content-Type' :'application/json'} }); 
+		 }
+		else {
 			console.log('entered else')	
 			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { Authorization: this.authToken , 'Accept' :'application/json'} });
 			// request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { 'Content-Type': 'application/json', Authorization: this.authToken } });

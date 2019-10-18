@@ -1,0 +1,69 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+      </div>
+    </div> 
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0 pull-left">Sheet Content</h3>
+              <div>
+                <button (click) = "showManagerList()" class="button pull-right">Send for approval</button>
+              </div>
+          </div>
+          <div class="card-header" id="select-manager" style="display: none;">
+              <button (click) = "sendApproval()" class="send-button pull-right button">Send</button>
+            <select class="pull-right" [(ngModel)]="approval.receiver_id">
+              <option *ngFor = "let manager of Managers"  [value]="manager.id" >{{manager.name}}</option>
+            </select>     
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th class= "th-padding" scope="col"style="text-align: center;">sl.no</th>
+                  <th  class="th-padding"scope="col"style="text-align: center;">Project</th>
+                  <th class="th-padding" scope="col"style="text-align: center;">Date</th>
+                  <th  class="td-padding"scope="col"style="text-align: center;">Activity</th>
+                  <th class="td-padding" scope="col">Hours</th>
+                  <th  class="th-padding"scope="col"></th>
+                </tr>
+              </thead>
+                <tr *ngFor= "let activity of SheetContent | paginate: { itemsPerPage: 10, currentPage: p };let i = index">
+                  <td class="th-padding" style="text-align: center;">
+                    <span class= "center" > {{i+1}}</span>
+                  </td>
+                  <td  class="th-padding" style="text-align: center;">
+                    <span class= "center">{{activity.project}}</span>
+                  </td>
+                  <td  class="th-padding"style="text-align: center;" >
+                      <span class= "center">
+                       {{activity.date | date}}
+                    </span>
+                  </td>
+                  <td  class="td-padding" style="text-align: center;">
+                      <span class="badge badge-dot mr-4">
+                          <i></i> {{activity.activity}}
+                        </span>
+                    </td>
+                  <td  class="th-padding" >   
+                    <span class= "center"> {{activity.hours}}</span>   
+                  </td>
+                 
+                </tr>
+            </table>
+          </div>
+          <div ></div>
+          <div class="align-right"> <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  

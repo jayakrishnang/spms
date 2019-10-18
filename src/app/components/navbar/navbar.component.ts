@@ -3,6 +3,8 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { UserProfileService } from 'src/app/pages/user-profile/user-profile.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-navbar',
@@ -14,11 +16,13 @@ export class NavbarComponent implements OnInit {
   public listTitles: any[];
   public location: Location;
   subscription: any;
-  constructor(location: Location,  private element: ElementRef, private router: Router, private authenticationService: AuthenticationService) {
+  UserProfile: any[] = [];
+  constructor(location: Location,  private element: ElementRef, private router: Router, private authenticationService: AuthenticationService, private userProfile: UserProfileService) {
     this.location = location;
   }
 
   ngOnInit() {
+    this.loadUserProfile();
     this.listTitles = ROUTES.filter(listTitle => listTitle);
   }
   getTitle(){
@@ -39,4 +43,12 @@ export class NavbarComponent implements OnInit {
     console.log('logout')
     this.subscription = this.authenticationService.logout();
   }
+  loadUserProfile(){
+    this.subscription = this.userProfile.getUserProfile().subscribe(data => {
+      this.UserProfile = data.data.user;
+      console.log(this.UserProfile);
+    })
+    
+  }
+
 }
