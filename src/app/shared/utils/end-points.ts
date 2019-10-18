@@ -20,7 +20,9 @@ export const EndPoints = {
     Activity: 'activities',
     Projects: 'projects',
     Sheets: 'sheets',
+    SheetContent: '/content',
     Notifications: 'users/notifications',
-    UserUpdate: 'users'
+    UserUpdate: 'users',
+    PendingApprovals: 'pending_approval'
     
 }

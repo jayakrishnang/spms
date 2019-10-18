@@ -19,6 +19,11 @@ export class HttpService {
         console.log(body);
         return this.http.post(url, body);
     }
+    patch(url, dataarr): Observable<any> {
+        const body = JSON.stringify(dataarr);
+        console.log(body);
+        return this.http.post(url, body);
+    }
     put(url, dataarr): Observable<any> {
         const body = JSON.stringify(dataarr);
         console.log(url);
@@ -31,12 +36,11 @@ export class HttpService {
     }
 ​
     postFileUpload(url: string, fmd: FormData): Observable<any> {
-        console.log('post file upload')
        const headers = new HttpHeaders();
        headers.append('Form-Data', 'UploadFile');
     //    headers.set('Content-Type', 'multipart/form-data');
     //    headers.set('Accept', 'application/json');
-        return this.http.post(url, fmd, {headers : headers});
+        return this.http.patch(url, fmd, {headers : headers});
     }
 
 ​

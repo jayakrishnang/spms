@@ -17,15 +17,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 ​
   ngOnInit() {
     this.loadNotifications();
-    this.timer = timer(3000, 10000);
+    this.timer = timer(0, 10000);
     this.timer.subscribe((t) => this.loadNotifications());
   }
   ngOnDestroy() {
   }
-  onScroll() {
-    console.log('scrolled!!');
-  }
-
+ 
   getColor(notification_type) { 
     switch (notification_type) {
       case 0:
@@ -40,7 +37,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getIcon(notification_type) { 
-    console.log(notification_type)
     switch (notification_type) {
       case 0:
         return "\uf09b";
