@@ -23,6 +23,10 @@ export const EndPoints = {
     SheetContent: '/content',
     Notifications: 'users/notifications',
     UserUpdate: 'users',
-    PendingApprovals: 'pending_approval'
+    PendingApprovals: 'pending_approval',
+    ManagerList: 'users/managers',
+    Approve: 'approve',
+    Reject: 'reject',
+    SendForApproval: 'send_for_approval'
     
 }

@@ -22,7 +22,7 @@ export class HttpService {
     patch(url, dataarr): Observable<any> {
         const body = JSON.stringify(dataarr);
         console.log(body);
-        return this.http.post(url, body);
+        return this.http.patch(url, body);
     }
     put(url, dataarr): Observable<any> {
         const body = JSON.stringify(dataarr);
@@ -43,7 +43,14 @@ export class HttpService {
         return this.http.patch(url, fmd, {headers : headers});
     }
 
-​
+    postApproval(url, body): Observable<any> {
+       let headers = new HttpHeaders({
+        'Content-Type': 'application/json'
+    });    //    headers.set('Content-Type', 'multipart/form-data');
+    //    headers.set('Accept', 'application/json');
+        return this.http.post(url, body, {headers : headers});
+    }
+
     private handleError(error: any) {
             console.log(error);
             return error;
