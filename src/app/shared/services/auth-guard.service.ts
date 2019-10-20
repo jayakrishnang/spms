@@ -5,7 +5,7 @@ import { AuthenticationService } from './authentication.service';
 export class AuthGuardService implements CanActivate {
   constructor(public auth: AuthenticationService, public router: Router) {}
   canActivate(): boolean {
-    if (!this.auth.isAuthentciated()) {
+    if (!this.auth.isAuthenticated()) {
       this.router.navigate(['login']);
       return false;
     }

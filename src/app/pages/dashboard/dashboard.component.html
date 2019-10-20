@@ -3,7 +3,7 @@
 <div class="container-fluid mt--7">
   <div class="row">
     <div class="col-xl-8 mb-5 mb-xl-0">
-      <div class="card bg-gradient-default shadow" style="height: 700px;">
+      <perfect-scrollbar class="card bg-gradient-default shadow scroll-disable">
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
@@ -27,13 +27,160 @@
             </div>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body card-padding">
           <!-- Chart -->
           <div class="chart">
+            <div class="col-xl-8 order-xl-1 card-fit">
+              <div *ngFor = "let activities of activitieslist; let i=index ">
+                <div id = "{{activities.group}}{{i}}">
+                <h2 class="text-white mb-0 tag-inline">{{activities.date}}</h2>
+                <span (click) = "expandChild(i)"class="badge expand-color" *ngIf="activities.group == 'parent'">Expand</span>
+                <span class="badge holiday-color" *ngIf="activities.holiday == true">Holiday</span>
+                  <div *ngFor = "let activity of activities.activities; let j = index" class="">
+                    <div class="card-body card-padding">
+                      <form class="form-height" [formGroup]= "updateActivityForm">
+                        <div class="dashboard-activity-margin">
+                          <div class="row">
+                            <div class="col-lg-3 dashboard-activity-padding">
+                              <div class="form-group">
+                                  <select class="project-dropdown" formControlName = "project" id = "input-project{{i}}{{j}}">
+                                      <option value="" selected >{{activity.project}}</option>
+                                      <option *ngFor = "let project of projectsList" [value]="project.id" [selected]="project.id === activity.id" >{{project.name}}</option>
+                                  </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-5 dashboard-activity-padding">
+                              <div class="form-group">
+                                <input type="text" id="input-activity{{i}}{{j}}" class="form-control form-control-alternative black" (keyup.enter)="updateActivity(activities.date, activity.id,i,j)" placeholder="Activity" [value] = "activity.activity" formControlName = "activity">
+                              </div>
+                            </div>
+                            <div class="col-lg-2 dashboard-activity-padding">
+                              <div class="form-group">
+                                <input type="text" id="input-hours{{i}}{{j}}" class="form-control form-control-alternative black" (keyup.enter)="updateActivity(activities.date, activity.id,i,j)" placeholder="Hours" [value] = "activity.hours" formControlName = "hours">
+                              </div>
+                            </div>
+                            <div id = "editbutton{{i}}{{j}}" style="display: block;">
+                              <a (click) = "enableFields(i,j)" style="cursor: pointer;"><i class='fas fa-edit icon-style' style="color:  #33ccff"></i> </a>
+                            </div>
+                            <div id ="savebutton{{i}}{{j}}" style="display: none;">
+                              <a (click)="updateActivity(activities.date, activity.id,i,j)" style="cursor:pointer ;"><i class='fas fa-check icon-style' style="color:  #40ff00"></i></a>
+                            </div>
+                            <div>
+                              <a (click)="removeActivity(activity.id)" style="cursor:pointer ;"><i class='fas fa-trash icon-style' style="color:  #ff0000"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="">
+                    <div class="card-body card-padding" *ngFor = "let container of activities.containers; let j = index">
+                      <form class="form-height" [formGroup] ="activityForm">
+                        <div class="dashboard-activity-margin">
+                          <div class="row">
+                            <div class="col-lg-3 dashboard-activity-padding">
+                                <select id="project{{i}}{{j}}"class="project-dropdown" formControlName = "project" placeholder="Select Project">
+                                    <option value="" disabled selected hidden>Select your project</option>
+                                    <option *ngFor = "let project of projectsList" [value]="project.id">{{project.name}}</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-5 dashboard-activity-padding">
+                              <div class="form-group">
+                                <input type="text" id="input-activity" class="form-control form-control-alternative" (keyup.enter)="createActivity(activities.date)" style = "color: black;"placeholder="Activity" formControlName = "activity">
+                                  </div>
+                              </div>
+                            <div class="col-lg-2 dashboard-activity-padding">
+                              <div class="form-group">
+                                <input type="text" id="input-hours" class="form-control form-control-alternative" (keyup.enter)="createActivity(activities.date)" style = "color: black;" placeholder="Hours" formControlName = "hours">
+                              </div>
+                            </div>
+                            <div>
+                              <a (click) = "createActivity(activities.date)" style="cursor: pointer;"><i class='fas fa-check icon-style' style="color:  #40ff00"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div style ="display: none;" id="{{children.group}}{{k}}" *ngFor = "let children of activities.children; let k = index">
+                  <h2 class="text-white mb-0 tag-inline">{{children.date}}</h2>
+                  <span class="badge expand-color" *ngIf="children.group == 'parent'">Expand</span>
+                  <span class="badge holiday-color" *ngIf="children.holiday == true">Holiday</span>
+                    <div *ngFor = "let childactivity of children.activities" class="">
+                      <div class="card-body card-padding">
+                        <form class="form-height" [formGroup] = "childActivityForm" >
+                          <div class="dashboard-activity-margin">
+                            <div class="row">
+                              <div class="col-lg-3 dashboard-activity-padding">
+                                <div class="form-group">
+                                    <select class="project-dropdown" formControlName = "project" id = "input-project{{i}}{{j}}">
+                                        <option value="" selected >{{childactivity.project}}</option>
+                                        <option *ngFor = "let project of projectsList" [value]="project.id">{{project.name}}</option>
+                                    </select>
+                                </div>
+                              </div>
+                              <div class="col-lg-5 dashboard-activity-padding">
+                                <div class="form-group">
+                                  <input type="text" id="childactivity{{i}}{{k}}" class="form-control form-control-alternative black" (keyup.enter)="updateChild(children.date, childactivity.id,i,k)" placeholder="Activity" [value] = "childactivity.activity" >
+                                </div>
+                              </div>
+                              <div class="col-lg-2 dashboard-activity-padding">
+                                <div class="form-group">
+                                  <input type="text" id="childhours{{i}}{{k}}" class="form-control form-control-alternative black" (keyup.enter)="updateChild(children.date, childactivity.id,i,k)" placeholder="Hours" [value] = "childactivity.hours">
+                                </div>
+                              </div>
+                              <div id = "editbutton{{i}}{{k}}" style="display: block;">
+                                <a (click) = "enableFieldsChild(i,k)" style="cursor: pointer;"><i class='fas fa-edit icon-style' style="color:  #33ccff"></i> </a>
+                              </div>
+                              <div id ="savebutton{{i}}{{k}}" style="display: none;">
+                                <a (click)="updateChild(children.date, childactivity.id,i,k)" style="cursor:pointer ;"><i class='fas fa-check icon-style' style="color:  #40ff00"></i></a>
+                              </div>
+                              <div>
+                                <a (click)="removeActivity(childactivity.id)" style="cursor:pointer ;"><i class='fas fa-trash icon-style' style="color:  #ff0000"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="">
+                      <div class="card-body card-padding" *ngFor = "let container of children.containers; let j = index">
+                        <form class="form-height" [formGroup] = "childActivityForm">
+                          <div class="dashboard-activity-margin">
+                            <div class="row">
+                              <div class="col-lg-3 dashboard-activity-padding">
+                                <div class="form-group">
+                                  <select id="project{{i}}{{j}}"class="project-dropdown" formControlName = "project" placeholder="Select Project">
+                                      <option value="" disabled selected hidden>Select your project</option>
+                                      <option *ngFor = "let project of projectsList" [value]="project.id">{{project.name}}</option>
+                                  </select>                                </div>
+                              </div>
+                              <div class="col-lg-5 dashboard-activity-padding">
+                                <div class="form-group">
+                                  <input type="text" id="input-activity" class="form-control form-control-alternative" placeholder="Activity" (keyup.enter)="childActivityCreate(children.date)" style = "color: black;" value="" formControlName = "activity">
+                                    </div>
+                                </div>
+                              <div class="col-lg-2 dashboard-activity-padding">
+                                <div class="form-group">
+                                  <input type="text" id="input-hours" class="form-control form-control-alternative" placeholder="Hours" (keyup.enter)="childActivityCreate(children.date)" style = "color: black;" value="" formControlName = "hours">
+                                </div>
+                              </div>
+                              <div>
+                                <a (click) = "childActivityCreate(children.date)"><i class='fas fa-check icon-style' style="color:  #40ff00"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
             <!-- Chart wrapper -->
           </div>
         </div>
-      </div>
+      </perfect-scrollbar>
     </div>
     <div class="col-xl-4" >
       <div class="card shadow" style="height: 700px;">

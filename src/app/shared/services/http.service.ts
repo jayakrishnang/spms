@@ -51,6 +51,35 @@ export class HttpService {
         return this.http.post(url, body, {headers : headers});
     }
 
+    logout(url, dataarr): Observable<any> {
+        const body = JSON.stringify(dataarr);
+        let headers = new HttpHeaders({
+            'Login-Type': 'application/json'
+        });
+        return this.http.post(url, body, {headers: headers});
+    }
+
+    postActivityCreate(url: string, fmd: FormData): Observable<any> {
+        console.log('post file upload')
+        let headers = new HttpHeaders({
+            'Form-Data': 'application/json'
+        });
+    //    headers.set('Content-Type', 'multipart/form-data');
+    //    headers.set('Accept', 'application/json');
+        return this.http.post(url, fmd, {headers : headers});
+    }
+
+    patchActivity(url: string, fmd: FormData): Observable<any> {
+        console.log('post file upload')
+        let headers = new HttpHeaders({
+            'Form-Data': 'application/json'
+        });
+    //    headers.set('Content-Type', 'multipart/form-data');
+    //    headers.set('Accept', 'application/json');
+        return this.http.patch(url, fmd, {headers : headers});
+    }
+
+​
     private handleError(error: any) {
             console.log(error);
             return error;

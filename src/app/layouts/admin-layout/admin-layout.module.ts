@@ -23,7 +23,16 @@ import { NgxSelectModule } from 'ngx-select-ex';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PendingApprovalsShowComponent } from 'src/app/pages/pending-approvals-show/pending-approvals-show.component';
 import { Approval } from 'src/app/shared/models/approval';
+import { ProjectComponent } from 'src/app/pages/project/project.component';
+// import { ToastrModule } from 'ngx-toastr';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { DropdownListModule } from 'ngx-dropdown-list';
 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 @NgModule({
   imports: [
     CommonModule,
@@ -35,7 +44,9 @@ import { Approval } from 'src/app/shared/models/approval';
     ReactiveFormsModule,
     NgxPaginationModule,
     NgxSelectModule,
-    NgSelectModule
+    NgSelectModule,
+    PerfectScrollbarModule,
+    DropdownListModule
   ],
   declarations: [
     DashboardComponent,
@@ -48,9 +59,13 @@ import { Approval } from 'src/app/shared/models/approval';
     SheetsShowComponent,
     PendingApprovalsComponent,
     PendingApprovalsShowComponent,
-    
-  ],
-    providers: [AuthenticationService, Approval]
+    ProjectComponent 
+    ],
+    providers: [AuthenticationService, Approval,      
+      {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }]
 })
 
 export class AdminLayoutModule {}

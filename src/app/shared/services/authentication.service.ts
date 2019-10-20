@@ -19,7 +19,7 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    public isAuthentciated(){
+    public isAuthenticated(){
        var token= JSON.parse(localStorage.getItem('currentUser')).access_token
        if (token == null || token == undefined)
        {
