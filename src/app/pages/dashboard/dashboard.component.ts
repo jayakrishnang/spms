@@ -33,8 +33,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 ​
   ngOnInit() {
     this.loadNotifications();
-    // this.timer = timer(0, 10000);
-    // this.timer.subscribe((t) => this.loadNotifications());
+    this.timer = timer(0, 10000);
+    this.timer.subscribe((t) => this.loadNotifications());
     this.loadActivities();
     this.loadProjects();
     this.activityForm = this.formBuilder.group({
