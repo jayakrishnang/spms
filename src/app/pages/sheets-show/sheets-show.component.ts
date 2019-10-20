@@ -51,23 +51,27 @@ export class SheetsShowComponent implements OnInit {
   sendApproval(){
     console.log(this.approval);
     this.subscription = this.sheetsShowService.postSendForApproval(this.id, this.approval).subscribe(data=>{
+      console.log(data)
       if(data.status == 'success')
       {
         this.toaster.success('Send for Approval', 'Success',{
           positionClass: 'toast-bottom-left'
         });
       }
-      if(data.status == 422)
-      {
-        this.toaster.error('Already send for approval', 'Error',{
-          positionClass: 'toast-bottom-left'
-        });
-      }
     },
     (error) => {
+      if (error.error.message == 'Sheet has been processed')
+      {
+      this.toaster.warning('Sheet has been processed', 'Error',{
+        positionClass: 'toast-bottom-left'
+      });
+      }
+      if (error.error.message == 'Already send for approval')
+      {
       this.toaster.error('Already send for approval', 'Error',{
         positionClass: 'toast-bottom-left'
       });
+      }
     }
     )
   }
