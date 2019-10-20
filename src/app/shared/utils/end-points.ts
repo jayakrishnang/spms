@@ -8,8 +8,8 @@ if(DOMAIN_NAME.includes("devrorapi")){
 export const EndPoints = {
     // API_URL: `https://spms-dev.herokuapp.com/`,
     // BASE_URL: `https://spms-dev.herokuapp.com/api/v1/`,
-    API_URL: `http://localhost:3000/`,
-    BASE_URL: `http://localhost:3000/api/v1/`,
+    API_URL: 'http://localhost:3000/',
+    BASE_URL: 'http://localhost:3000/api/v1/',
     Login: 'oauth/token',
     Reset: 'users/password',
     Forgot: 'users/forgot_password',
@@ -27,6 +27,7 @@ export const EndPoints = {
     ManagerList: 'users/managers',
     Approve: 'approve',
     Reject: 'reject',
-    SendForApproval: 'send_for_approval'
+    SendForApproval: 'send_for_approval',
+    DashboardActivities: 'activities/get_activities'
     
 }

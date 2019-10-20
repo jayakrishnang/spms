@@ -39,10 +39,7 @@ import { PendingApprovalsService } from './pages/pending-approvals/pending-appro
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
-    
-    
-    
+    AuthLayoutComponent
   ],
   providers: [
     UserLogin,

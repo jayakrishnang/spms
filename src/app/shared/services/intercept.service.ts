@@ -32,7 +32,6 @@ export class InterceptService implements HttpInterceptor {
 
 		const fromPage = request.headers.has('Form-Data');
 		console.log(fromPage)
-
 		if (request.headers.has('Component-Page')) {
 			console.log('entered component')
 			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { 'Content-Type': 'application/json' } });
@@ -46,6 +45,10 @@ export class InterceptService implements HttpInterceptor {
 			console.log('in application/json')
 			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { Authorization: this.authToken , 'Content-Type' :'application/json'} }); 
 		 }
+		else if(request.headers.has('Login-Type')){
+			console.log('logout intercept')
+			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { 'Content-Type': 'application/json' } });
+		}
 		else {
 			console.log('entered else')	
 			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { Authorization: this.authToken , 'Accept' :'application/json'} });

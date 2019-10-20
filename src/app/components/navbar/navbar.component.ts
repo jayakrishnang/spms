@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { UserProfileService } from 'src/app/pages/user-profile/user-profile.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { HttpService } from 'src/app/shared/services/http.service';
+import { EndPoints } from 'src/app/shared/utils/end-points';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +19,7 @@ export class NavbarComponent implements OnInit {
   public location: Location;
   subscription: any;
   UserProfile: any[] = [];
-  constructor(location: Location,  private element: ElementRef, private router: Router, private authenticationService: AuthenticationService, private userProfile: UserProfileService) {
+  constructor(location: Location,  private element: ElementRef, private router: Router, private authenticationService: AuthenticationService, private httpservice: HttpService, private userProfile: UserProfileService) {
     this.location = location;
   }
 
@@ -40,8 +42,15 @@ export class NavbarComponent implements OnInit {
   }
   logout()
   {
-    console.log('logout')
-    this.subscription = this.authenticationService.logout();
+    const url = EndPoints.API_URL + EndPoints.Logout;
+    const dataarr = {
+      "token": JSON.parse(localStorage.getItem('currentUser')).access_token
+    }
+    this.subscription = this.httpservice.logout(url, dataarr).subscribe(data=>{
+      }
+    )
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/']);
   }
   loadUserProfile(){
     this.subscription = this.userProfile.getUserProfile().subscribe(data => {
