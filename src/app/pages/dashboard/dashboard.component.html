@@ -80,22 +80,22 @@
                           <div class="row">
                             <div class="col-lg-3 dashboard-activity-padding">
                                 <select id="project{{i}}{{j}}"class="project-dropdown" formControlName = "project" placeholder="Select Project">
-                                    <option value="" disabled selected hidden>Select your project</option>
+                                    <option value="" disabled selected hidden>Select Project</option>
                                     <option *ngFor = "let project of projectsList" [value]="project.id">{{project.name}}</option>
                                 </select>
                             </div>
                             <div class="col-lg-5 dashboard-activity-padding">
                               <div class="form-group">
-                                <input type="text" id="input-activity" class="form-control form-control-alternative" (keyup.enter)="createActivity(activities.date)" style = "color: black;"placeholder="Activity" formControlName = "activity">
+                                <input type="text" id="input-activity" class="form-control form-control-alternative" style = "color: black;"placeholder="Activity" formControlName = "activity">
                                   </div>
                               </div>
                             <div class="col-lg-2 dashboard-activity-padding">
                               <div class="form-group">
-                                <input type="text" id="input-hours" class="form-control form-control-alternative" (keyup.enter)="createActivity(activities.date)" style = "color: black;" placeholder="Hours" formControlName = "hours">
+                                <input type="text" id="input-hours" class="form-control form-control-alternative" style = "color: black;" placeholder="Hours" formControlName = "hours">
                               </div>
                             </div>
-                            <div>
-                              <a (click) = "createActivity(activities.date)" style="cursor: pointer;"><i class='fas fa-check icon-style' style="color:  #40ff00"></i></a>
+                            <div class="button-margin">
+                              <button class="btn btn-success" (click) = "createActivity(activities.date)">Save</button>
                             </div>
                           </div>
                         </div>
@@ -153,22 +153,22 @@
                               <div class="col-lg-3 dashboard-activity-padding">
                                 <div class="form-group">
                                   <select id="project{{i}}{{j}}"class="project-dropdown" formControlName = "project" placeholder="Select Project">
-                                      <option value="" disabled selected hidden>Select your project</option>
+                                      <option value="" disabled selected hidden>Select Project</option>
                                       <option *ngFor = "let project of projectsList" [value]="project.id">{{project.name}}</option>
                                   </select>                                </div>
                               </div>
                               <div class="col-lg-5 dashboard-activity-padding">
                                 <div class="form-group">
-                                  <input type="text" id="input-activity" class="form-control form-control-alternative" placeholder="Activity" (keyup.enter)="childActivityCreate(children.date)" style = "color: black;" value="" formControlName = "activity">
+                                  <input type="text" id="input-activity" class="form-control form-control-alternative" placeholder="Activity" style = "color: black;" value="" formControlName = "activity">
                                     </div>
                                 </div>
                               <div class="col-lg-2 dashboard-activity-padding">
                                 <div class="form-group">
-                                  <input type="text" id="input-hours" class="form-control form-control-alternative" placeholder="Hours" (keyup.enter)="childActivityCreate(children.date)" style = "color: black;" value="" formControlName = "hours">
+                                  <input type="text" id="input-hours" class="form-control form-control-alternative" placeholder="Hours" style = "color: black;" value="" formControlName = "hours">
                                 </div>
                               </div>
-                              <div>
-                                <a (click) = "childActivityCreate(children.date)"><i class='fas fa-check icon-style' style="color:  #40ff00"></i></a>
+                              <div class="button-margin">
+                                <button class="btn btn-success" (click) = "childActivityCreate(children.date)">Save</button>
                               </div>
                             </div>
                           </div>
