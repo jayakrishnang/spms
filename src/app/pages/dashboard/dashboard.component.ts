@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   childActivityForm : FormGroup;
   parent: any;
   projectsList: any[] = [];
+  selectedIndex = -1;
   constructor(private dashboardService: DashboardService, private formBuilder: FormBuilder, private toaster: ToastrService) {}
 ​
   ngOnInit() {
@@ -125,16 +126,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
       divparent.style.display = "none";
       this.parent = false;
     }
-    for (let i = 0; i < 31; i++) {
-      var divchild = document.getElementById('child'+i)
-      if (divchild.style.display == "none")
-      {
-        divchild.style.display = "block";
-      }
-      else
-      {
-        divchild.style.display = "none";
-      }
+    var divchild = document.getElementById('child'+i)
+    if (divchild.style.display == "none")
+    {
+      divchild.style.display = "block";
+    }
+    else
+    {
+      divchild.style.display = "none";
     }
   }
 
@@ -149,13 +148,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.date = date;
     this.id = id;
     this.subscription = this.dashboardService.updateActivity(this.project, this.activity, this.hours, this.date, this.id).subscribe(data=>{
-    console.log(data)
     if(data.message == 'success'){
         this.toaster.success('Activity Updated', 'Success!',{
           positionClass: 'toast-bottom-left'
         });
         this.ngOnInit();
       }
+    },
+    (error)=>{
+      this.toaster.error('Invalid attributes', 'Success!',{
+        positionClass: 'toast-bottom-left'
+      });
     })
     var projectfield = <HTMLInputElement> document.getElementById('input-project'+i+j);
     var activityfield = <HTMLInputElement> document.getElementById('input-activity'+i+j);
@@ -183,6 +186,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
         });
         this.ngOnInit();
       }
+    },
+    (error)=>{
+      this.toaster.error('Invalid attributes', 'Error!',{
+        positionClass: 'toast-bottom-left'
+      });
     })
     var projectfield = <HTMLInputElement> document.getElementById('input-project'+i+k);
     var activityfield = <HTMLInputElement> document.getElementById('input-activity'+i+k);
