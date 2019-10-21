@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 // import 'rxjs/Rx';
-import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpEvent, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 ​
 @Injectable()
@@ -13,6 +13,19 @@ export class HttpService {
     }
     get(url): Observable<any> {
         return this.http.get(url);
+    }
+
+    getActivity(url,data): Observable<any> {
+
+    let params = new HttpParams();
+    params = params.append('start_date', data.start_date);
+    params = params.append('end_date', data.end_date);
+    params = params.append('date', data.date);
+    params = params.append('project_id', data.project_id);
+    // params = params.append('hours', data.hours);
+    params = params.append('cutoff_hour', data.cutoff_hour);
+    params = params.append('group', data.group);
+        return this.http.get(url, {params: params});
     }
     post(url, dataarr): Observable<any> {
         const body = JSON.stringify(dataarr);
@@ -29,6 +42,11 @@ export class HttpService {
         console.log(url);
         console.log(body);
         return this.http.put(url, body);
+    }
+    patch(url, dataarr): Observable<any> {
+        const body = JSON.stringify(dataarr);
+        console.log(body);
+        return this.http.patch(url, body);
     }
     delete(url): Observable<any> {
         console.log(url);

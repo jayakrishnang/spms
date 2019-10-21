@@ -51,7 +51,7 @@ export class InterceptService implements HttpInterceptor {
 		}
 		else {
 			console.log('entered else')	
-			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { Authorization: this.authToken , 'Accept' :'application/json'} });
+			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { 'Content-Type': 'application/json' , Authorization: this.authToken , 'Accept' :'application/json'} });
 			// request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { 'Content-Type': 'application/json', Authorization: this.authToken } });
 		}
 

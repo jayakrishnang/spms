@@ -10,6 +10,7 @@ import { SheetsShowComponent } from 'src/app/pages/sheets-show/sheets-show.compo
 import { PendingApprovalsComponent } from 'src/app/pages/pending-approvals/pending-approvals.component';
 import { PendingApprovalsShowComponent } from 'src/app/pages/pending-approvals-show/pending-approvals-show.component';
 import { ProjectComponent } from 'src/app/pages/project/project.component';
+import { ActivitiesComponent } from 'src/app/pages/activities/activities.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -21,5 +22,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'sheetcontent/:id',   component: SheetsShowComponent},
     { path: 'pendingapprovals',         component:PendingApprovalsComponent },
     { path: 'pendingapprovalshow/:id', component: PendingApprovalsShowComponent},
-    { path: 'project',        component: ProjectComponent}
+    { path: 'project',        component: ProjectComponent},
+    { path: 'activities',     component: ActivitiesComponent}
 ];

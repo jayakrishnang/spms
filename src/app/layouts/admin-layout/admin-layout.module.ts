@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -18,6 +20,7 @@ import { SheetsComponent } from 'src/app/pages/sheets/sheets.component';
 import { SheetsShowComponent } from 'src/app/pages/sheets-show/sheets-show.component';
 import { NgxPaginationModule } from 'ngx-pagination'
 import { PendingApprovalsComponent } from 'src/app/pages/pending-approvals/pending-approvals.component';
+import { ActivitiesComponent } from 'src/app/pages/activities/activities.component';
 // import { ToastrModule } from 'ngx-toastr';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -46,12 +49,16 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxSelectModule,
     NgSelectModule,
     PerfectScrollbarModule,
-    DropdownListModule
+    DropdownListModule,
+    BsDatepickerModule.forRoot(),
+    DatepickerModule.forRoot(), 
+    ClipboardModule
   ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
     TablesComponent,
+    ActivitiesComponent,
     IconsComponent,
     DateAgoPipe,
     MapsComponent,
@@ -67,5 +74,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     }]
 })
+
 
 export class AdminLayoutModule {}

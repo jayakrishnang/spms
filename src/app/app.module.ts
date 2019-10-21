@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { UserLogin } from './shared/models/userlogin';
@@ -21,6 +22,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SheetsService } from './pages/sheets/sheets.service';
 import { SheetsShowService } from './pages/sheets-show/sheets-show.service';
 import { PendingApprovalsService } from './pages/pending-approvals/pending-approvals.service';
+import { ActivityService } from './pages/activities/activity_service';
+import { ActivityCreate } from './shared/models/activity';
+import { Filter } from './shared/models/filter';
 
 
 @NgModule({
@@ -39,16 +43,19 @@ import { PendingApprovalsService } from './pages/pending-approvals/pending-appro
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent  
   ],
   providers: [
     UserLogin,
+    ActivityCreate,
     DashboardService,
     HttpService,
     UserProfileService,
     SheetsService,
     SheetsShowService,
     PendingApprovalsService,
+    Filter,
+    ActivityService,
     InterceptService,
 		{
 			provide: HTTP_INTERCEPTORS,

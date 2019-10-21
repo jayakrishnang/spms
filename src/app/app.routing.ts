@@ -41,6 +41,10 @@ const routes: Routes =[
   {
     path: 'login',
     redirectTo: 'login'
+  },
+  {
+    path: 'activities',
+    redirectTo: 'activities'
   }
 ];
 
