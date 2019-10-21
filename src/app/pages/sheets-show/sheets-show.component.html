@@ -19,7 +19,7 @@
           </div>
           <div class="card-header" id="select-manager" style="display: none;">
               <button (click) = "sendApproval()" class="send-button pull-right button">Send</button>
-            <select class="pull-right" [(ngModel)]="approval.receiver_id">
+            <select class="pull-right project-dropdown" [(ngModel)]="approval.receiver_id">
               <option *ngFor = "let manager of Managers"  [value]="manager.id" >{{manager.name}}</option>
             </select>     
           </div>
