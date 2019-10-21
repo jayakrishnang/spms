@@ -3,6 +3,8 @@ import { HttpClientModule } from '@angular/common/http';import { RouterModule } 
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { MyDatePickerModule } from 'mydatepicker';
+
 
 
 import { ClipboardModule } from 'ngx-clipboard';
@@ -45,6 +47,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgbModule,
     ClipboardModule,
     ReactiveFormsModule,
+    MyDatePickerModule,
     NgxPaginationModule,
     NgxSelectModule,
     NgSelectModule,

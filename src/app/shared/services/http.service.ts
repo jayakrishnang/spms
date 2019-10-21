@@ -22,7 +22,7 @@ export class HttpService {
     params = params.append('end_date', data.end_date);
     params = params.append('date', data.date);
     params = params.append('project_id', data.project_id);
-    // params = params.append('hours', data.hours);
+    params = params.append('hours', data.hours);
     params = params.append('cutoff_hour', data.cutoff_hour);
     params = params.append('group', data.group);
         return this.http.get(url, {params: params});
@@ -31,11 +31,6 @@ export class HttpService {
         const body = JSON.stringify(dataarr);
         console.log(body);
         return this.http.post(url, body);
-    }
-    patch(url, dataarr): Observable<any> {
-        const body = JSON.stringify(dataarr);
-        console.log(body);
-        return this.http.patch(url, body);
     }
     put(url, dataarr): Observable<any> {
         const body = JSON.stringify(dataarr);
