@@ -34,6 +34,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { DropdownListModule } from 'ngx-dropdown-list';
+import { SelectDropDownModule } from 'ngx-select-dropdown'
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -55,7 +56,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DropdownListModule,
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(), 
-    ClipboardModule
+    ClipboardModule,
+    SelectDropDownModule
   ],
   declarations: [
     DashboardComponent,

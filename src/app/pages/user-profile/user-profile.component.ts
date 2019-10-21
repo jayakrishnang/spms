@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserProfileComponent implements OnInit {
   subscription: any;
-  UserProfile: any[] = [];
+  UserProfile: any;
   uploadForm: FormGroup;
   profileimage: any;
   name: any;

@@ -129,7 +129,8 @@ input[type="checkbox"] {
 }
 
 .card-fit{
-    max-width: none !important;
+	max-width: none !important;
+	margin-left: 3%;
 }
 
 .dashboard-activity-padding{
@@ -212,6 +213,11 @@ input[type="checkbox"] {
 	box-shadow: none;
 	color: black;
 }
+
+  .button-margin{
+	  margin-left: 10px;
+	  margin-top: 1px;
+  }
 [data-color=red] { &:after { background-color: #ff3c41 !important; } }
 [data-color=blue] { &:after { background-color: #2cb5e8 !important; } }
 [data-color=green] { &:after { background-color: #47cf73 !important; } }
