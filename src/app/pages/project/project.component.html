@@ -10,8 +10,47 @@
         <div class="col">
           <div class="card shadow">
             <div class="card-header border-0">
-              <h3 class="mb-0 pull-left">Projects</h3><button class="btn btn-primary pull-right"><i class="fas fa-plus" style="color: rgb(20, 209, 20)"></i>New Project</button>
+              <h3 class="mb-0 pull-left">Projects</h3><button style="display: none;" (click) = "showAddProject()" class="btn btn-primary pull-right"><i class="fas fa-plus" style="color: rgb(20, 209, 20)"></i> New Project</button>
             </div>
+            <div class="pl-lg-4" id="add-project" style="display: none;">
+              <form [formGroup] = "projectCreateForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-username">Project Name</label>
+                      <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Project Name" [value]="" formControlName="projectname">
+                    </div>
+                  </div>
+                  <div class="col-lg-5">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-email">Aliases</label>
+                      <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="Comma seperated names" formControlName="aliases">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-last-name">Logo</label>
+                      <input type="file" name="logo" (change)="onFileSelect($event)" />
+                    </div>
+                  </div>
+                  <div class="col-lg-5">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-last-name">Users</label>
+                      <br>
+                      <ngx-select-dropdown [options]="" 
+                      formControlName="users" [multiple]="true" formControlName = "users"></ngx-select-dropdown>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-5">
+                      <button type="submit" class="btn btn-success">Create Project</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              </div>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
