@@ -280,8 +280,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   loadUserProfile(){
     this.subscription = this.dashboardService.getUserProfile().subscribe(data => {
       this.DefaultProject = data.data.user.default_project;
-      this.activityForm.get('project').setValue(this.DefaultProject);
-      this.childActivityForm.get('project').setValue(this.DefaultProject);
+      if (this.DefaultProject != null){
+        this.activityForm.get('project').setValue(this.DefaultProject);
+        this.childActivityForm.get('project').setValue(this.DefaultProject);
+      }
     })
   }
 
