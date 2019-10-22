@@ -8,6 +8,7 @@ export class Filter {
     "project_id":"",
     "hours":"",
     "cutoff_hour":"",
+    "range": "",
     "group":"",
     "sheet_name":""
   }

@@ -25,6 +25,7 @@ export class HttpService {
     params = params.append('hours', data.hours);
     params = params.append('cutoff_hour', data.cutoff_hour);
     params = params.append('group', data.group);
+    params = params.append('range', data.range)
         return this.http.get(url, {params: params});
     }
     post(url, dataarr): Observable<any> {

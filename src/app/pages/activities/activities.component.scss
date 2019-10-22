@@ -1,0 +1,50 @@
+.filter-margin{
+    margin-left: -10px;
+    margin-right: 0px;
+}
+
+.project-dropdown{
+	display: block;
+    width: 100%;
+    height: calc(2.3rem + 2px);
+    padding: 0.625rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #8898aa;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #cad1d7;
+    border-radius: 0.375rem;
+	box-shadow: none;
+	color: black;
+}
+
+.range-dropdown{
+	display: block;
+    width: 100%;
+    height: calc(2.5rem + 2px);
+    padding: 0.625rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #8898aa;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #cad1d7;
+    border-radius: 0.375rem;
+	box-shadow: none;
+	color: black;
+}
+.margin-top-textbox{
+    margin-top: 4px;
+}
+
+.margin-top-minus{
+    margin-top: -3px;
+}
+.margin-bottom{
+    margin-bottom: 20px;
+}
+
+.button-top{
+    margin-top: 35px;
+}
