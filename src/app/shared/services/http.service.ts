@@ -50,8 +50,9 @@ export class HttpService {
     }
 ​
     postFileUpload(url: string, fmd: FormData): Observable<any> {
-       const headers = new HttpHeaders();
-       headers.append('Form-Data', 'UploadFile');
+        let headers = new HttpHeaders({
+            'Form-Data': 'application/json'
+        });
     //    headers.set('Content-Type', 'multipart/form-data');
     //    headers.set('Accept', 'application/json');
         return this.http.patch(url, fmd, {headers : headers});
