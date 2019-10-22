@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   parent: any;
   projectsList: any[] = [];
   selectedIndex = -1;
+  DefaultProject: any;
   constructor(private dashboardService: DashboardService, private formBuilder: FormBuilder, private toaster: ToastrService) {}
 ​
   ngOnInit() {
@@ -58,6 +59,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.updateActivityForm.controls['project'].disable();
     this.updateActivityForm.controls['activity'].disable();
     this.updateActivityForm.controls['hours'].disable();
+    this.loadUserProfile();
 
   }
   ngOnDestroy() {
@@ -231,8 +233,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.toaster.success('Activity Created', 'Success!',{
           positionClass: 'toast-bottom-left'
         });
-        this.ngOnInit();
         this.childActivityForm.reset();
+        this.ngOnInit();
       }
     },
     (error)=>{
@@ -272,6 +274,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.subscription = this.dashboardService.getProjects().subscribe(data=>{
       console.log(data.data.projects);
       this.projectsList = data.data.projects;
+    })
+  }
+
+  loadUserProfile(){
+    this.subscription = this.dashboardService.getUserProfile().subscribe(data => {
+      this.DefaultProject = data.data.user.default_project;
+      this.activityForm.get('project').setValue(this.DefaultProject);
+      this.childActivityForm.get('project').setValue(this.DefaultProject);
     })
   }
 
