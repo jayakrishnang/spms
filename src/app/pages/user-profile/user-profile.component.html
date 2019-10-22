@@ -87,11 +87,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">Password</label>
-                    <input type="password" id="input-first-name" class="form-control form-control-alternative" placeholder="*******" value="" formControlName="password" [ngClass]="{ 'is-invalid': submitted &amp;&amp; uploadForm.controls.password.errors }">
-                    <div *ngIf="submitted &amp;&amp; uploadForm.controls.password.errors" class="text-danger">
-                        <div *ngIf="uploadForm.controls.password.errors.required">Password is required</div>
-                        <div *ngIf="uploadForm.controls.password.errors.minlength">Password must be at least 6 characters</div>
-                    </div>
+                    <input type="password" id="input-first-name" class="form-control form-control-alternative" placeholder="*******" value="" formControlName="password">
                   </div>
                 </div>
                 <div class="col-lg-6">

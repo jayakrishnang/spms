@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit {
       profileimage: [''],
       name: '',
       email: '',
-      password: ['',[Validators.required, Validators.minLength(6)]],
+      password: [''],
       default_project: ''
     });
     this.loadProjects();
