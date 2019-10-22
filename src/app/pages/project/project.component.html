@@ -1,5 +1,6 @@
-<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
-    <div class="container-fluid">
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 400px; background-image: url(assets/img/project.jpg); background-size: cover; background-position: center top;">
+  <span class="mask bg-gradient-danger opacity-8"></span>
+      <div class="container-fluid">
       <div class="header-body">
         <!-- Card stats -->
       </div>
@@ -54,45 +55,36 @@
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Project</th>
-                    <th scope="col">Hours</th>
-                    <th scope="col">Status</th>
-                    <th></th>
-                    <th></th>
-                  </tr>
+                    <tr>
+                        <th class= "td-padding" scope="col"style="text-align: center;">logo</th>
+                        <th  class="th-padding"scope="col"style="text-align: center;">Name</th>
+                        <th class="th-padding" scope="col"style="text-align: center;">status</th>
+                        <th  class="td-padding"scope="col"style="text-align: center;">hours</th>
+                        <th class="td-padding" scope="col"></th>
+                        <th  class="th-padding"scope="col"></th>
+                      </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor = "let project of projectsList">
-                    <th scope="row">
-                      <div class="media align-items-center">
+                          <td class="th-padding" style="text-align: center;">
                         <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                          <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
+                          <img alt="Image placeholder" src="../assets/img/index.png">
                         </a>
-                        <div class="media-body">
-                          <span class="mb-0 text-sm">{{project.name}}</span>
-                        </div>
-                      </div>
-                    </th>
-                    <td>
-                  {{project.total_hours}}
+                      </td>
+                        <td class="th-padding" style="text-align: center;">
+                          <span class="center">
+                            {{project.name}}
+                          </span>
+                        </td>
+                        <td class="th-padding" style="text-align: center;">
+                            <span class="center">
+                            {{project.total_hours}}
+                        </span>
                     </td>
-                    <td>
-                      <span class="badge badge-dot mr-4">
+                    <td class="th-padding" style="text-align: center;">
+                        <span class="center">
                         <i class="bg-warning"></i> {{project.status}}
                       </span>
-                    </td>
-                    <td class="text-right">
-                      <div ngbDropdown placement="bottom-right">
-                        <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                          <i class="fas fa-ellipsis-v"></i>
-                        </a>
-                        <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                          <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                          <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                          <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                        </div>
-                      </div>
                     </td>
                   </tr>
                 </tbody>

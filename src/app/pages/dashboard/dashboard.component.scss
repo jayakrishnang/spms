@@ -216,7 +216,7 @@ input[type="checkbox"] {
 
   .button-margin{
 	  margin-left: 10px;
-	  margin-top: 1px;
+	  margin-top: 5px;
   }
 [data-color=red] { &:after { background-color: #ff3c41 !important; } }
 [data-color=blue] { &:after { background-color: #2cb5e8 !important; } }
@@ -226,3 +226,6 @@ input[type="checkbox"] {
 
 // &#xf27b;
 // &#xf004;
+.btn{
+	padding: 0.4rem 1.10rem;
+}
