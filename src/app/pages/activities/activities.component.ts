@@ -31,18 +31,32 @@ export class ActivitiesComponent implements OnInit {
   filterdata: any;
   sheetCreate: boolean;
   sheetdata: any;
+  updateActivity: any;
+  updateData: any;
 
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd',
 };
+
   constructor(private activityService: ActivityService, private activityCreate: ActivityCreate, private modalService: NgbModal, private toaster: ToastrService, private filter: Filter) { }
 
     
   open(content,id) {
     this.modalService.open(content, this.modalOptions).result.then((result) => {
     this.closeResult = `Closed with: ${result}`;
-    }, 
-    )
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+    this.onEdit(id);
+  }  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
   ngOnInit() {
@@ -96,11 +110,21 @@ export class ActivitiesComponent implements OnInit {
     this.loadActivity();
   })
   } 
+  onEdit(id){
+    this.Subscription = this.activityService.getUpdate(id).subscribe(data => {
+      this.updateData = data.data;
+      console.log(this.updateData);
+    })
+  }
 
   onUpdate(id){
     this.Subscription = this.activityService.updateActivity(id,this.ActivityData).subscribe(data => {
-
-
+      if (data.status ='success'){
+        this.toaster.success('Activity Updated', 'Success!', {
+          positionClass: 'toast-bottom-left'
+        });
+      }
+      this.loadActivity();
     })
   }
 
@@ -153,7 +177,13 @@ export class ActivitiesComponent implements OnInit {
 
   onSheetCreate(){
     this.Subscription = this.activityService.createSheet(this.filterdata).subscribe(data => {
-      this.sheetCreate=false;
+      if (data.status ='success'){
+        this.toaster.success('Sheet Created', 'Success!',{
+          positionClass: 'toast-bottom-left'
+        });
+      }
+      this.sheetCreate=false;      
     })
   }
 }
+

@@ -41,4 +41,8 @@ export class ActivityService {
     const url = EndPoints.BASE_URL + EndPoints.Sheets;
     return this.httpService.post(url, filterparams);
   }
+  getUpdate(id){
+    const url = EndPoints.BASE_URL + EndPoints.Activity + '/' + id;
+    return this.httpService.get(url);
+  }
 }
