@@ -49,10 +49,10 @@ export class NavbarComponent implements OnInit {
       "token": JSON.parse(localStorage.getItem('currentUser')).access_token
     }
     this.subscription = this.httpservice.logout(url, dataarr).subscribe(data=>{
+          localStorage.clear();
+          this.router.navigate(['/']);
       }
     )
-    localStorage.removeItem('currentUser');
-    this.router.navigate(['/']);
   }
   loadUserProfile(){
     this.subscription = this.userProfile.getUserProfile().subscribe(data => {

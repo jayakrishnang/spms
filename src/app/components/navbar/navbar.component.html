@@ -9,10 +9,10 @@
         <a class="nav-link pr-0" role="button" ngbDropdownToggle>
           <div class="media align-items-center">
             <span class="avatar avatar-sm rounded-circle">
-              <img src="{{UserProfile.profile_image.url}}" onError="this.src='./assets/img/avatar.jpg';">
+              <img src="{{UserProfile?.profile_image?.url}}" onError="this.src='./assets/img/avatar.jpg';">
             </span>
             <div class="media-body ml-2 d-none d-lg-block">
-              <span class="mb-0 text-sm  font-weight-bold">{{UserProfile.name}}</span>
+              <span class="mb-0 text-sm  font-weight-bold">{{UserProfile?.name}}</span>
             </div>
           </div>
         </a>

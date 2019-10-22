@@ -56,13 +56,13 @@ export class AuthenticationService {
             }));
     }
 ​
-    logout() {
-    console.log('logout inauth')
-    var body = {
-        "token": JSON.parse(localStorage.getItem('currentUser')).access_token
-    }
-    localStorage.removeItem('currentUser');
-    this.router.navigate(['/']);
+    // logout() {
+    // console.log('logout inauth')
+    // var body = {
+    //     "token": JSON.parse(localStorage.getItem('currentUser')).access_token
+    // }
+    // localStorage.removeItem('currentUser');
+    // this.router.navigate(['/']);
 
     //    return this.http.post<any>(`${EndPoints.API_URL}${EndPoints.Logout}`, body)
     //     .pipe(map(user => {
@@ -72,5 +72,5 @@ export class AuthenticationService {
     //         this.router.navigate(['/']);
     //     }));
        
-    }
+    // }
 }
