@@ -1,261 +1,291 @@
-<form>
-  <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
-    <br>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
       <div class="header-body">
         <!-- Card stats -->
         <div class="row">
-          <div class="col-xl-2 col-lg-4">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Total Count</h5>
-                    <span class="h2 font-weight-bold mb-0">{{TotalCount}}</span>
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Activities</h5>
+                      <span class="h2 font-weight-bold mb-0">{{TotalCount}}</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                        <i class="fas fa-chart-bar"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Hours</h5>
+                      <span class="h2 font-weight-bold mb-0">{{TotalHours}}</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                        <i class="fa fa-clock-o"></i>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-xl-2 col-lg-4">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <div class="card-body">
-                <div class="row pull-right">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Total Hours</h5>
-                    <span class="h2 font-weight-bold mb-0">{{TotalHours}}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
-
-
-
-    <!--  table -->
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
     <div class="row mt-5">
-      <div class="col">
-        <div class="card shadow">
-          <div class="card-header bg-transparent border-0">
-              <!-- <h3 class="text-dark mb-0 pull-left">Activities</h3> -->
-              <button type="button" class="btn btn-primary btn-lg active pull-right" (click)="onSheets()">Create Sheet</button>
-              <button type="button" class="btn btn-default btn-lg active pull-right margin-btn" (click)="onFilter()">Filters</button>
-              <button type="button" class="btn btn-success btn-lg active pull-left" (click)="onAddnew()">Add New </button>
-          </div>
-         
-                        <!--filters-->
-                        
-                        <div *ngIf= "isFilter" id="filters">
-                          <div class="pl-lg-4">
-                            <div class="row">
-                              <div class="col-lg-3">
-                                  <label class="form-control-label" for="input-username">Start Date</label>
-                                  <input type="text" class="form-control form-control-alternative" 
-                                  id="startdate" name="startdate" [(ngModel)]="filterdata.start_date" placeholder="start date">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-header bg-transparent border-0">
+                <!-- <h3 class="text-dark mb-0 pull-left">Activities</h3> -->
+                <button type="button" class="btn btn-info btn-lg pull-right" (click)="onSheets()">Generate Sheet</button>
+                <button type="button" class="btn btn-default btn-lg active pull-right margin-btn" (click)="onFilter()">Filters</button>
+                <button type="button" class="btn btn-success btn-lg active pull-left" (click)="onAddnew()">Add New </button>
+            </div>
+           
+                          <!--filters-->
+                          
+                          <div *ngIf= "isFilter" id="filters" class="margin-bottom">
+                            <div class="pl-lg-4">
+                              <div class="row filter-margin margin-bottom">
+                                <div class="col-lg-3">
+                                    <label class="form-control-label" for="input-username">Start Date</label>
+                                    <my-date-picker id="start_date" name="startdate" [options]="myDatePickerOptions" (dateChanged)="onStartDateChanged($event)"></my-date-picker>
+                                </div>
+                                <div class="col-lg-3">
+                                  <label class="form-control-label" for="input-username">End Date</label>
+                                  <my-date-picker name="enddate" [options]="myDatePickerOptions" (dateChanged)="onEndDateChanged($event)"></my-date-picker>
+                                </div>
+                                <div class="col-lg-3">
+                                  <label class="form-control-label" for="input-username">Date</label>
+                                  <my-date-picker name="date" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)"></my-date-picker>
+                                </div>
+                                <div class="col-lg-3">
+                                  <label class="form-control-label" for="input-username">Project Id</label>
+                                  <select class="project-dropdown" [(ngModel)]="filterdata.project_id" id = "input-project{{i}}{{j}}">
+                                    <option *ngFor = "let project of Projectlist" [value]="project.id" >{{project.name}}</option>
+                                </select>
+                                </div>
                               </div>
-                              <div class="col-lg-3">
-                                <label class="form-control-label" for="input-username">End Date</label>
-                                <input type="text" class="form-control form-control-alternative " 
-                                  id="enddate" name="enddate" [(ngModel)]="filterdata.end_date" placeholder="end date">  
-                              </div>
-                              <div class="col-lg-3">
-                                <label class="form-control-label" for="input-username">Date</label>
-                                <input type="text" class="form-control form-control-alternative " 
-                                 id="date" name="date" [(ngModel)]="filterdata.date" placeholder="date">  
-                              </div>
-                              <div class="col-lg-3">
-                                <label class="form-control-label" for="input-username">Project Id</label>
-                                <input type="text" class="form-control form-control-alternative " 
-                                 id="projectid" name="projectid" [(ngModel)]="filterdata.project_id" placeholder="project">
+                              <div class="row filter-margin">
+                                <div class="col-lg-3">
+                                  <label class="form-control-label">Hours</label>
+                                  <select class="range-dropdown" [(ngModel)]="filterdata.range" id="range">
+                                    <option value="" selected hidden>Select range</option>
+                                    <option value="gt">Greater Than</option>
+                                    <option value="lt">Less Than</option>
+                                    <option value="eql">Equal To</option>
+                                  </select>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label class="form-control-label" for="input-username"></label>
+                                    <input type="text" class="form-control form-control-alternative margin-top-textbox" 
+                                   id="hours" name="hours" [(ngModel)]="filterdata.hours" placeholder="Hours">
+                                </div>
+                                <div class="col-lg-3">
+                                    <label class="form-control-label" for="input-username">Cut Off Hour</label>
+                                    <input type="text" class="form-control form-control-alternative margin-top-minus" 
+                                   id="hours" name="hours" [(ngModel)]="filterdata.cutoff_hour" placeholder="Cut Off Hour">
+                                </div>
+                                <div class="col-lg-1">
+                                    <label class="form-control-label" for="input-username"></label>
+                                    <button type="button" class="btn btn-success margin-top-textbox" (click)="filterActivity()">Submit</button>   
+                                </div>
+                                <div class="col-lg-1">
+                                    <label class="form-control-label" for="input-username"></label>
+                                    <button type="button" class="btn btn-info margin-top-textbox" (click)="onSheets()">Generate Sheet</button>
+                                </div>
                               </div>
                             </div>
-
-                            <div class="row">
-                              <div class="col-lg-3">
-                                  <label class="form-control-label" for="input-username">Hours</label>
-                                  <input type="text" class="form-control form-control-alternative " 
-                                 id="hours" name="hours" [(ngModel)]="filterdata.hours" placeholder="hours">
-                              </div>
+                          </div> 
+                          <!--sheets create-->
+                          <div *ngIf= "sheetCreate">
+                            <div class="pl-lg-4">
+                              <div class="row filter-margin margin-bottom">
                                 <div class="col-lg-3">
-                                  <label class="form-control-label" for="input-username">Cutoff Hours</label>
-                                  <input type="text" class="form-control form-control-alternative " 
-                                   id="cutoffhours" name="cutoffhours" [(ngModel)]="filterdata.cutoff_hour" placeholder="hours">
+                                  <label class="form-control-label" for="input-username">Sheet Name</label>
+                                  <input type="text" class="form-control form-control-alternative" id="sheet-name" name="sheetname" [(ngModel)]="filterdata.sheet_name" placeholder="Sheet name">
                                 </div>
-                                  <div class="col-lg-2">
-                                    <button type="button" class=" btn btn-default pull-right" style="margin-top: 13%;" (click)="filterActivity()">submit</button>   
-                                  </div>
+                                <div class="col-lg-3">
+                                  <label class="form-control-label" for="input-username"></label>
+                                  <button type="button" class="btn btn-primary button-top" (click)="onSheetCreate()">Create Sheet</button>
+                                </div>
+                              </div>
+                            </div>
+                              <!-- <div class="row">  
+                                <strong class="col-lg-1">Sheet Name</strong>
+                                  <input type="text" class="form-control form-control-alternative col-lg-1" id="sheet-name" name="sheetname" [(ngModel)]="filterdata.sheet_name" placeholder="Sheet name">
+                                  <button type="button" class="btn btn-primary btn-lg active pull-left" style="margin-left: 2%;" (click)="onSheetCreate()">Save</button>
+                              </div> -->
+                          </div>
+  
+           
+          
+            <!--table rows-->
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Project Name</th>
+                    <th scope="col">Activity</th>
+                    <th scope="col">Hours</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- add new activity -->
+                    <tr *ngIf= "isAddnew">
+                        <th scope="row">
+                          <div class="media align-items-center">
+                            <div class="media-body">
+                              <input class="form-control form-control-alternative" placeholder="Select date" name="dp" [(ngModel)]="ActivityData.activity.date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text"/>
                             </div>
                           </div>
-                        </div> 
-                        <!--sheets create-->
-                        <div *ngIf= "sheetCreate">
-                          <div class="row">  
-                            <strong class="col-lg-1">Sheet Name</strong>
-                              <input type="text" class="form-control form-control-alternative col-lg-1" id="sheet-name" name="sheetname" [(ngModel)]="filterdata.sheet_name" placeholder="Sheet name">
-                              <button type="button" class="btn btn-primary btn-lg active pull-left" style="margin-left: 2%;" (click)="onSheetCreate()">Save</button>
+                        </th>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <select class="form-control form-control-alternative" id="project_name" name="projectid" [(ngModel)]="ActivityData.activity.project_id" placeholder=" Select Project">
+                                <option *ngFor="let project of Projectlist" value="{{project.id}}">{{project.name}}</option>  
+                                </select>
+                        
+                            </div>
+                          </td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                          <span class="mr-4 text-sm">
+                              <input type="text" class="form-control form-control-alternative" id="activity-name" name="activityname" [(ngModel)]="ActivityData.activity.name" placeholder="name">
+                          </span> 
+                          </div>    
+                        </td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                          <span class="mr-8 text-sm">
+                              <input type="" class="form-control form-control-alternative" id="activity-hours" name="activityhours" [(ngModel)]="ActivityData.activity.hours" placeholder="hours">
+                          </span>
+                          </div>
+                        </td>
+  
+                        <td>
+                            <div class="d-flex align-items-center">
+                              <span class="mr-16">
+                                  <button type="button" class="btn btn-success btn-lg active"(click)="onSubmit()" >Save</button>
+                              </span>
+                            </div>
+                          </td>
+                      </tr>
+                      <!-- list activities -->
+                  <tr *ngFor = "let activity of Activitylist">
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="badge badge-dot mr-0">
+                            <i class="bg-warning"></i>
+                            {{activity.date | date}}
+                          </span>
                         </div>
                       </div>
-
-         
-        
-          <!--table rows-->
-          <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">Date</th>
-                  <th scope="col">Project Name</th>
-                  <th scope="col">Activity</th>
-                  <th scope="col">Hours</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- add new activity -->
-                  <tr *ngIf= "isAddnew">
-                      <th scope="row">
-                        <div class="media align-items-center">
-                          <div class="media-body">
-                            <input class="form-control form-control-alternative" placeholder="Select date" name="dp" [(ngModel)]="ActivityData.activity.date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text"/>
+                    </th>
+                    <td>
+                      <span class="mr-4 text-sm">
+                        {{activity.project_name}}  
+                      </span>     
+                    </td>
+                    <td>
+                      <span class="mr-8 text-sm">
+                        {{activity.name}}
+                      </span>
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="mr-12">{{activity.hours}}</span>
+                      </div>
+                    </td>
+  
+  
+                    <!-- update button -->
+                    <td>  
+                        <ng-template #mymodal let-modal>
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="modal-basic-title">Update Activity</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
                           </div>
-                        </div>
-                      </th>
-                      <td>
-                          <div class="d-flex align-items-center">
-                              <select class="form-control form-control-alternative" id="project_name" name="projectid" [(ngModel)]="ActivityData.activity.project_id" placeholder=" Select Project">
-                              <option *ngFor="let project of Projectlist" value="{{project.id}}">{{project.name}}</option>  
-                              </select>
+                          <div class="modal-body">
+                              <form>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                        <div class="input-group mb-4">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text"></span>
+                                          </div>
+                                          <input class="form-control" placeholder="Select date" name="dp" id="date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text"/>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                        <div class="input-group mb-4">
+                                            <select class="form-control" id="projectid" name="projectid" placeholder=" Select Project">
+                                                <option *ngFor="let project of Projectlist" value="{{project.id}}">{{project.name}}</option>  
+                                                </select>
+                                         
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                        <input class="form-control" id="name" placeholder=" Activity " type="text">
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                          <input class="form-control" id="hour" placeholder=" Hours" type="text">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
                       
                           </div>
-                        </td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                        <span class="mr-4 text-sm">
-                            <input type="text" class="form-control form-control-alternative" id="activity-name" name="activityname" [(ngModel)]="ActivityData.activity.name" placeholder="name">
-                        </span> 
-                        </div>    
-                      </td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                        <span class="mr-8 text-sm">
-                            <input type="" class="form-control form-control-alternative" id="activity-hours" name="activityhours" [(ngModel)]="ActivityData.activity.hours" placeholder="hours">
-                        </span>
-                        </div>
-                      </td>
-
-                      <td>
-                          <div class="d-flex align-items-center">
-                            <span class="mr-16">
-                                <button type="button" class="btn btn-success btn-lg active"(click)="onSubmit()" >Save</button>
-                            </span>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark" (click)="onUpdate(id)">Update</button>
+                            <button type="button" class="btn btn-outline-dark" (click)="modal.close('modal.dismiss')">Cancel</button>
                           </div>
-                        </td>
-                    </tr>
-                    <!-- list activities -->
-                <tr *ngFor = "let activity of Activitylist">
-                  <th scope="row">
-                    <div class="media align-items-center">
-                      <div class="media-body">
-                        <span class="badge badge-dot mr-0">
-                          <i class="bg-warning"></i>
-                          {{activity.date | date}}
-                        </span>
-                      </div>
-                    </div>
-                  </th>
-                  <td>
-                    <span class="mr-4 text-sm">
-                      {{activity.project_name}}  
-                    </span>     
-                  </td>
-                  <td>
-                    <span class="mr-8 text-sm">
-                      {{activity.name}}
-                    </span>
-                  </td>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <span class="mr-12">{{activity.hours}}</span>
-                    </div>
-                  </td>
-
-
-                  <!-- update button -->
-                  <td>  
-                      <ng-template #mymodal let-modal>
-                        <div class="modal-header">
-                          <h4 class="modal-title" id="modal-basic-title">Update Activity</h4>
-                          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <div class="input-group mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text"></span>
-                                        </div>
-                                        <input class="form-control" placeholder="Select date" name="dp" id="date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text"/>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <div class="input-group mb-4">
-                                          <select class="form-control" id="projectid" name="projectid" placeholder=" Select Project">
-                                              <option *ngFor="let project of Projectlist" value="{{project.id}}">{{project.name}}</option>  
-                                              </select>
-                                       
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <input class="form-control" id="name" placeholder=" Activity " type="text">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="form-control" id="hour" placeholder=" Hours" type="text">
-                                    </div>
-                                  </div>
-                                </div>
-                              </form>
-                    
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-outline-dark" (click)="onUpdate(id)">Update</button>
-                          <button type="button" class="btn btn-outline-dark" (click)="modal.close('modal.dismiss')">Cancel</button>
-                        </div>
-                      </ng-template>
-                    <button class="btn btn-warning btn-lg active pull-left" (click)="open(mymodal);" type="button">Edit
-                    </button>
-
-
-
-                    <!-- delete button -->
-                     <span *ngIf= "confirmDelete">
-                        Are you sure ?
-                        <button class="btn btn-icon btn-2 btn-danger" (click)="onDelete(activity.id)" type="button">Yes</button>
-                        <button class="btn btn-icon btn-2 btn-warning" (click)="confirmDelete=false" type="button">No</button>
-                     </span>
-                    <button *ngIf= "!confirmDelete" class="btn btn-danger btn-lg active pull-left" (click)="confirmDelete=true" type="button">Delete</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>  
+                        </ng-template>
+                      <button class="btn btn-warning btn-lg active pull-left" (click)="open(mymodal);" type="button">Edit
+                      </button>
+  
+  
+  
+                      <!-- delete button -->
+                       <span *ngIf= "confirmDelete">
+                          Are you sure ?
+                          <button class="btn btn-icon btn-2 btn-danger" (click)="onDelete(activity.id)" type="button">Yes</button>
+                          <button class="btn btn-icon btn-2 btn-warning" (click)="confirmDelete=false" type="button">No</button>
+                       </span>
+                      <button *ngIf= "!confirmDelete" class="btn btn-danger btn-lg active pull-left" (click)="confirmDelete=true" type="button">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>  
+          </div>
         </div>
-      </div>
-  </div>
-  </form> 
-    
+    </div>
+  
+  

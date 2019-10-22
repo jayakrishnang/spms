@@ -22,14 +22,14 @@ export class ActivitiesComponent implements OnInit {
   TotalCount: any;
   TotalHours: any;
   ActivityData: any;
-  isAddnew=false;
-  isFilter=false;
+  isAddnew: boolean;
+  isFilter: boolean;
   confirmDelete: boolean;
   closeResult: string;
   modalOptions:NgbModalOptions;
   myDateValue: Date;
   filterdata: any;
-  sheetCreate=false;
+  sheetCreate: boolean;
   sheetdata: any;
 
   public myDatePickerOptions: IMyDpOptions = {
@@ -53,13 +53,33 @@ export class ActivitiesComponent implements OnInit {
     this.myDateValue = new Date();
   }
   onAddnew(){
-    this.isAddnew = true;
+    if(this.isAddnew == true)
+    {
+      this.isAddnew = false;
+    }
+    else{
+      this.isAddnew = true;
+    }
     }
   onFilter(){
-      this.isFilter = true;
+      if(this.isFilter == true)
+      {
+        this.isFilter = false;
+      }
+      else
+      {
+        this.isFilter = true;
+      }
     }
   onSheets(){
-    this.sheetCreate=true;
+    if(this.sheetCreate == true)
+    {
+      this.sheetCreate = false;
+    }
+    else
+    {
+      this.sheetCreate = true;
+    }
   }
 
   
@@ -97,11 +117,20 @@ export class ActivitiesComponent implements OnInit {
     })
 
   }
+
+  onStartDateChanged(event) {
+    this.filterdata.start_date = event.formatted;
+  }
+
+  onEndDateChanged(event){
+    this.filterdata.end_date = event.formatted;
+  }
+  onDateChanged(event){
+    this.filterdata.date = event.formatted;
+  }
   filterActivity(){
     this.Subscription = this.activityService.getActivity(this.filterdata).subscribe(data =>
-      { console.log(data)
-        var date = this.filterdata.start_date;
-        this.filterdata.start_date = date.year.day.toString() + "-" + date.month.toString() + "-" + date.day.toString();
+      { 
         this.Activitylist = data.data;
         this.TotalCount = data.total_count;
         this.TotalHours = data.total_hours;
