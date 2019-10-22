@@ -21,15 +21,15 @@ export class InterceptService implements HttpInterceptor {
 	constructor(
 		private router: Router,
 	) {
+		
+	}
+
+	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		if(JSON.parse(localStorage.getItem('currentUser'))){
 			this.authToken = 'Bearer ' + JSON.parse(localStorage.getItem('currentUser')).access_token;
 		}else {
 			this.authToken = '';
 		}
-	}
-
-	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
 		const fromPage = request.headers.has('Form-Data');
 		console.log(fromPage)
 		if (request.headers.has('Component-Page')) {
