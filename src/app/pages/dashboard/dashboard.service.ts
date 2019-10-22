@@ -48,5 +48,10 @@ export class DashboardService {
     formdata.append("activity[date]", date);
     return this.httpService.patchActivity(url, formdata);
   }
+
+  getUserProfile(){
+    const url = EndPoints.BASE_URL + EndPoints.UserProfile
+    return this.httpService.get(url);
+  }
 }
 

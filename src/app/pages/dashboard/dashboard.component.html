@@ -37,7 +37,7 @@
                 <span (click) = "expandChild(i)"class="badge expand-color" *ngIf="activities.group == 'parent'">Expand</span>
                 <span class="badge holiday-color" *ngIf="activities.holiday == true">Holiday</span>
                   <div *ngFor = "let activity of activities.activities; let j = index" class="">
-                    <div class="card-body card-padding">
+                    <div class="card-body card-padding margin-fields">
                       <form class="form-height" [formGroup]= "updateActivityForm">
                         <div class="dashboard-activity-margin">
                           <div class="row">
@@ -74,7 +74,7 @@
                     </div>
                   </div>
                   <div class="">
-                    <div class="card-body card-padding" *ngFor = "let container of activities.containers; let j = index">
+                    <div class="card-body card-padding margin-fields" *ngFor = "let container of activities.containers; let j = index">
                       <form class="form-height" [formGroup] ="activityForm">
                         <div class="dashboard-activity-margin">
                           <div class="row">
@@ -109,8 +109,8 @@
                   <span class="badge expand-color" *ngIf="children.group == 'parent'">Expand</span>
                   <span class="badge holiday-color" *ngIf="children.holiday == true">Holiday</span>
                     <div *ngFor = "let childactivity of children.activities" class="">
-                      <div class="card-body card-padding">
-                        <form class="form-height" [formGroup] = "childActivityForm" >
+                      <div class="card-body card-padding margin-fields">
+                        <form class="form-height" [formGroup] = "childUpdateActivityForm" >
                           <div class="dashboard-activity-margin">
                             <div class="row">
                               <div class="col-lg-3 dashboard-activity-padding">
@@ -146,7 +146,7 @@
                       </div>
                     </div>
                     <div class="">
-                      <div class="card-body card-padding" *ngFor = "let container of children.containers; let j = index">
+                      <div class="card-body card-padding margin-fields" *ngFor = "let container of children.containers; let j = index">
                         <form class="form-height" [formGroup] = "childActivityForm">
                           <div class="dashboard-activity-margin">
                             <div class="row">
