@@ -20,6 +20,7 @@ export class SheetsShowComponent implements OnInit {
   public items: string[] = [];
   approval: any;
   p: number = 1;
+  sheetDetails: any;
 
   constructor(private sheetsShowService:SheetsShowService, private route: ActivatedRoute, private Auth: AuthenticationService, private approvals: Approval, private toaster: ToastrService) { }
 
@@ -34,6 +35,7 @@ export class SheetsShowComponent implements OnInit {
     });
     this.loadSheetContent(this.id);
     this.loadManagerList();
+    this.loadSheet();
   }
 
   showManagerList(){
@@ -75,11 +77,14 @@ export class SheetsShowComponent implements OnInit {
     }
     )
   }
-   
+  loadSheet(){
+    this.subscription = this.sheetsShowService.getSheet(this.id).subscribe(data => {
+      this.sheetDetails = data.data.sheet;
+    })
+  }
   loadSheetContent(id){
     this.subscription = this.sheetsShowService.getSheetContent(id).subscribe(data => {
       this.SheetContent = data.activities;
-      console.log(this.SheetContent)
     })
   }
   loadManagerList(){

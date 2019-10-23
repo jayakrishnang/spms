@@ -26,6 +26,11 @@ export class SheetsShowService {
 
   }
 
+  getSheet(id){
+    const url = EndPoints.BASE_URL + EndPoints.Sheets + '/' + id
+    return this.httpService.get(url);
+  }
+
   postSendForApproval(id,data){
     console.log(data);
     const url = EndPoints.BASE_URL + EndPoints.Sheets + '/' + id + '/' + EndPoints.SendForApproval

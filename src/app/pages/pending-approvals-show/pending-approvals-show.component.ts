@@ -13,7 +13,7 @@ export class PendingApprovalsShowComponent implements OnInit {
   PendingSheetContent:any[] =[];
   id: any;
   sub: any;
-
+  sheetDetails: any;
   constructor(private pendingApprovalShowService: PendingApprovalsShowService, private route: ActivatedRoute, private toaster: ToastrService , private router:Router ) { }
 
   ngOnInit() {
@@ -21,6 +21,7 @@ export class PendingApprovalsShowComponent implements OnInit {
       this.id = params['id'];
       });
     this.loadPendingSheetContent(this.id);
+    this.loadSheet();
   }
   sheetApprove(){
     this.subscription = this.pendingApprovalShowService.postApprove(this.id).subscribe(data =>{
@@ -46,6 +47,13 @@ export class PendingApprovalsShowComponent implements OnInit {
     })
 
   }
+
+  loadSheet(){
+    this.subscription = this.pendingApprovalShowService.getSheet(this.id).subscribe(data => {
+      this.sheetDetails = data.data.sheet;
+    })
+  }
+
   loadPendingSheetContent(id){
     this.subscription = this.pendingApprovalShowService.getPendingSheetContent(id).subscribe(data => {
       this.PendingSheetContent = data.activities;
