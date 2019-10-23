@@ -7,9 +7,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Filter } from 'src/app/shared/models/filter';
 import {IMyDpOptions} from 'mydatepicker';
 
-
-
-
 @Component({
   selector: 'app-activities',
   templateUrl: './activities.component.html',
@@ -33,6 +30,7 @@ export class ActivitiesComponent implements OnInit {
   sheetdata: any;
   updateActivity: any;
   updateData: any;
+  p: number = 1;
 
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd',
