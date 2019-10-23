@@ -19,6 +19,11 @@ export class PendingApprovalsShowService {
     return this.httpService.post(url,this.body);
   }
 
+  getSheet(id){
+    const url = EndPoints.BASE_URL + EndPoints.Sheets + '/' + id
+    return this.httpService.get(url);
+  }
+
   postReject(id){
     const url = EndPoints.BASE_URL + EndPoints.Sheets + '/' + id + '/' + EndPoints.Reject;
     this.body;
