@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivityService } from 'src/app/pages/activities/activity_service';
 import { ActivityCreate } from 'src/app/shared/models/activity';
 import { collectExternalReferences } from '@angular/compiler';
-import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons, NgbModalOptions, NgbDate, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Filter } from 'src/app/shared/models/filter';
 import {IMyDpOptions} from 'mydatepicker';
@@ -31,12 +31,13 @@ export class ActivitiesComponent implements OnInit {
   updateActivity: any;
   updateData: any;
   p: number = 1;
+  date: NgbDate;
 
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd',
 };
 
-  constructor(private activityService: ActivityService, private activityCreate: ActivityCreate, private modalService: NgbModal, private toaster: ToastrService, private filter: Filter) { }
+  constructor(private activityService: ActivityService, private activityCreate: ActivityCreate, private modalService: NgbModal, private toaster: ToastrService, private filter: Filter, private calendar: NgbCalendar) { }
 
     
   open(content,id) {
@@ -108,21 +109,33 @@ export class ActivitiesComponent implements OnInit {
     this.loadActivity();
   })
   } 
-  onEdit(id){
-    this.Subscription = this.activityService.getUpdate(id).subscribe(data => {
-      this.updateData = data.data;
-      console.log(this.updateData);
-    })
-  }
+    onEdit(id){
+        this.Subscription = this.activityService.getUpdate(id).subscribe(data => {
+          this.updateData = data.data;
+          console.log(this.updateData);
+          var tempdate = new Date(this.updateData.activity.date);
+          console.log(tempdate);
+          this.date = new NgbDate(tempdate.getFullYear(),tempdate.getMonth()+1,tempdate.getDate());
+          this.ActivityData.activity.date  = this.date;
+          this.ActivityData.activity.project_id = this.updateData.activity.project.id;
+          this.ActivityData.activity.name = this.updateData.activity.name;
+          this.ActivityData.activity.hours = this.updateData.activity.hours;
+          
+        })
+      }
 
   onUpdate(id){
+    var date = (<HTMLInputElement>document.getElementById('date')).value;
+    this.ActivityData.activity.date = date;
     this.Subscription = this.activityService.updateActivity(id,this.ActivityData).subscribe(data => {
       if (data.status ='success'){
+        console.log('updated')
         this.toaster.success('Activity Updated', 'Success!', {
           positionClass: 'toast-bottom-left'
         });
+        document.getElementById('cancel').click();
+        this.loadActivity();
       }
-      this.loadActivity();
     })
   }
 

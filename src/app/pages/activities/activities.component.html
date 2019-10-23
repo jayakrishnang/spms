@@ -146,7 +146,7 @@
                         <th scope="row">
                           <div class="media align-items-center">
                             <div class="media-body">
-                              <input class="form-control form-control-alternative" placeholder="Select date" name="dp" [(ngModel)]="ActivityData.activity.date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text"/>
+                              <input class="form-control form-control-alternative" id = "dpdate" placeholder="Select date" name="dp" [(ngModel)]="ActivityData.activity.date " ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text"/>
                             </div>
                           </div>
                         </th>
@@ -226,15 +226,15 @@
                                     <div class="input-group-prepend">
                                       <span class="input-group-text"></span>
                                     </div>
-                                    <input class="form-control" [value]="updateData.activity.date | date" name="dp" id="date" [(ngModel)]="ActivityData.activity.date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text">
+                                    <input class="form-control" name="dp" id="date" [(ngModel)]="ActivityData.activity.date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text">
                                   </div>
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <div class="input-group mb-4">
-                                      <select class="project-dropdown" [(ngModel)]="ActivityData.activity.project_id" name="project_id">
-                                          <option *ngFor = "let project of Projectlist" [value]="project.id" >{{project.name}}</option>
+                                      <select class="project-dropdown" [(ngModel)]="ActivityData.activity.project_id" name="project_id" id="projectid"> 
+                                           <option *ngFor = "let project of Projectlist" [value]="project.id">{{project.name}}</option> 
                                         </select>                                 
                                   </div>
                                 </div>
@@ -243,12 +243,12 @@
                             <div class="row">
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <input class="form-control" id="name" name ="name" [value]="updateData.activity.name" type="text" [(ngModel)]="ActivityData.activity.name">
+                                  <input class="form-control" id="name" name ="name"  type="text" [(ngModel)]="ActivityData.activity.name">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <input class="form-control" id="hour" name="hours" [value]="updateData.activity.hours" [(ngModel)]="ActivityData.activity.hours" type="text">
+                                  <input class="form-control" id="hour" name="hours"  [(ngModel)]="ActivityData.activity.hours" type="text">
                                 </div>
                               </div>
                             </div>
@@ -256,7 +256,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-primary" (click)="onUpdate(activity.id,data)">Update</button>
-                          <button type="button" class="btn btn-warning" (click)="modal.close('modal.dismiss')">Cancel</button>
+                          <button type="button" class="btn btn-warning" id="cancel" (click)="modal.close('modal.dismiss')">Cancel</button>
                         </div>
                       </ng-template>
                       <button class="btn  btn-color active pull-left" (click)="open(mymodal,activity.id);" type="button">Edit
