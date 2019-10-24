@@ -57,7 +57,8 @@
               <button (click) = "sendApproval()" class="send-button pull-right button">Send</button>
             <select class="pull-right project-dropdown" [(ngModel)]="approval.receiver_id">
               <option *ngFor = "let manager of Managers"  [value]="manager.id" >{{manager.name}}</option>
-            </select>     
+            </select> 
+            <p class="pull-right">Select Manager&nbsp;</p>    
           </div>
           <div class="table-responsive">
             <table class="table align-items-center table-flush">
