@@ -93,7 +93,6 @@ export class HttpService {
     //    headers.set('Accept', 'application/json');
         return this.http.patch(url, fmd, {headers : headers});
     }
-
 ​
     private handleError(error: any) {
             console.log(error);

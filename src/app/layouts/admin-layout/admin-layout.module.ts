@@ -35,6 +35,10 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { DropdownListModule } from 'ngx-dropdown-list';
 import { SelectDropDownModule } from 'ngx-select-dropdown'
+import { RejectedSheetsComponent } from 'src/app/pages/rejected-sheets/rejected-sheets.component';
+import { ApprovedSheetsComponent } from 'src/app/pages/approved-sheets/approved-sheets.component';
+import { NotificationCreate } from 'src/app/shared/models/notificaton';
+import { TagInputModule } from 'ngx-chips';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -57,7 +61,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(), 
     ClipboardModule,
-    SelectDropDownModule
+    SelectDropDownModule,
+    TagInputModule
   ],
   declarations: [
     DashboardComponent,
@@ -71,9 +76,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SheetsShowComponent,
     PendingApprovalsComponent,
     PendingApprovalsShowComponent,
-    ProjectComponent 
+    ProjectComponent,
+    RejectedSheetsComponent,
+    ApprovedSheetsComponent
     ],
-    providers: [AuthenticationService, Approval,      
+    providers: [AuthenticationService, Approval,NotificationCreate,   
       {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

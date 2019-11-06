@@ -99,12 +99,22 @@
                     </select>
                   </div>
                 </div>
+              </div>
+              <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-last-name">Profile Image</label>
                       <input type="file" name="profileimage" (change)="onFileSelect($event)" />
                     </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Git Emails<span class="text-muted">&nbsp;(comma seperated)</span></label>
+                      <div>
+                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="email@abc.com, email@xyz.com" [value]="" formControlName="git_emails">
+                      </div>
                   </div>
+                </div>
               </div>
             </div>
             <div class="btn-new">

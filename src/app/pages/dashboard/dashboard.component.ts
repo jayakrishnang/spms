@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { timer } from 'rxjs';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal, NgbModalOptions, ModalDismissReasons, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { NotificationCreate } from 'src/app/shared/models/notificaton';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -31,7 +33,62 @@ export class DashboardComponent implements OnInit, OnDestroy {
   projectsList: any[] = [];
   selectedIndex = -1;
   DefaultProject: any;
-  constructor(private dashboardService: DashboardService, private formBuilder: FormBuilder, private toaster: ToastrService) {}
+  modalOptions:NgbModalOptions;
+  closeResult: string;
+  notificationData: any;
+
+  constructor(private dashboardService: DashboardService,private modalService: NgbModal, private formBuilder: FormBuilder, private toaster: ToastrService, private notificationCreate: NotificationCreate) {}
+  open(content,project,activity,date,type) {
+    if (type == 0 || type == 4)
+      {
+      this.modalService.open(content, this.modalOptions).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+      this.onEdit(project,activity, date);
+    }
+  }  
+
+  onEdit(project, activity,date){
+      var tempdate = new Date(date);
+      console.log(tempdate);
+      this.date = new NgbDate(tempdate.getFullYear(),tempdate.getMonth()+1,tempdate.getDate());
+      this.notificationData.activity.date  = this.date;
+      this.notificationData.activity.project_id = project;
+      this.notificationData.activity.name = activity;
+  }
+  onCreate(id){
+    var date = (<HTMLInputElement>document.getElementById('date')).value;
+    this.notificationData.activity.date = date;
+    this.subscription = this.dashboardService.createActivity(this.notificationData).subscribe(data=>{
+      if(data.status == 'success'){
+        this.toaster.success('Activity Created', 'Success!',{
+          positionClass: 'toast-bottom-left'
+        });
+        this.modalService.dismissAll();
+        var body ={
+          "id":id
+        }
+        this.dashboardService.setRead(body).subscribe();
+        this.ngOnInit();
+      }
+    },
+    (error)=>{
+        this.toaster.error('Please fill all fields!', 'Error!',{
+          positionClass: 'toast-bottom-left'
+        });
+    })
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
 ​
   ngOnInit() {
     this.loadNotifications();
@@ -60,6 +117,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.updateActivityForm.controls['activity'].disable();
     this.updateActivityForm.controls['hours'].disable();
     this.loadUserProfile();
+    this.notificationData = this.notificationCreate.returnActivityPostData();
 
   }
   ngOnDestroy() {
@@ -75,6 +133,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         return 'red';
       case 3:
         return 'yellow';
+      case 4:
+        return 'blue';
     }
   }
 
@@ -88,6 +148,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         return "\uf06a";
       case 3:
         return "\uf253";
+      case 4:
+        return "\uf296";
     }
   }
   loadNotifications(){
