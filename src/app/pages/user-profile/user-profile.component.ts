@@ -22,6 +22,7 @@ export class UserProfileComponent implements OnInit {
   ProjectsList: any[] = [];
   prefillUser: any;
   submitted = false;
+  git_emails: any;
 
   constructor(private userprofileService: UserProfileService, private formbuilder: FormBuilder, private Auth: AuthenticationService, private toaster: ToastrService ) { }
 
@@ -34,7 +35,8 @@ export class UserProfileComponent implements OnInit {
       name: '',
       email: '',
       password: [''],
-      default_project: ''
+      default_project: '',
+      git_emails: ''
     });
     this.loadProjects();
   }
@@ -72,8 +74,9 @@ export class UserProfileComponent implements OnInit {
     this.password = this.uploadForm.get('password').value;
     this.default_project = this.uploadForm.get('default_project').value;
     this.profileimage = this.uploadForm.get('profileimage').value;
+    this.git_emails = this.uploadForm.get('git_emails').value;
     this.user = this.Auth.currentUserValue.result;
-    this.userprofileService.patchUserUpdate(this.name, this.email, this.password, this.default_project, this.profileimage, this.user.id).subscribe(
+    this.userprofileService.patchUserUpdate(this.name, this.email, this.password, this.default_project, this.profileimage, this.user.id, this.git_emails).subscribe(
       data=>{
         if (data.message == "success")
         {

@@ -1,5 +1,5 @@
-<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
-</div>
+<div class="header pb-8 pt-5 pt-md-8 pt-lg-8 d-flex align-items-center" style="min-height: 300px; background-image: url(assets/img/new.jpg); background-size: cover; background-position: center top;">
+  <span class="mask bg-gradient-danger opacity-8"></span></div>
 <div class="container-fluid mt--7">
   <div class="row">
     <div class="col-xl-8 mb-5 mb-xl-0">
@@ -196,13 +196,62 @@
         <div class="card-body scroll-hover">
           <!-- Chart -->
               <ol class="activity-feed">
-                  <li class="feed-item" *ngFor= "let notification of Notificationslist" [attr.data-content] = "getIcon(notification.notification_type)" [attr.data-time]="notification.created_at | dateAgo" [attr.data-color]="getColor(notification.notification_type)">
+                  <li class="feed-item" *ngFor= "let notification of Notificationslist; let i=index" [attr.data-content] = "getIcon(notification.notification_type)" [attr.data-time]="notification.created_at | dateAgo" [attr.data-color]="getColor(notification.notification_type)">
                     <section>
-                      <input type="checkbox" id="expand_1" name="expand_1" />
-                      <label for="expand_1">
+                      <input type="checkbox" id="expand_{{i+1}}" name="expand_{{i+1}}" (click)="open(mymodal, notification.project_id, notification.activity_name, notification.date, notification.notification_type)" />
+                      <label for="expand_{{i+1}}" [style.color] = "notification.is_read == 0 ? 'black' : 'grey'">
                         {{notification.notification}}
                       </label>
                     </section>
+                      <ng-template #mymodal let-modal>
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="modal-basic-title">Create Activity</h4>
+                              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <div class="input-group mb-4">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                      </div>
+                                      <input class="form-control text-color" name="dp" id="date" [(ngModel)]="notificationData.activity.date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" placeholder="Date">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <div class="input-group mb-4">
+                                        <select class="project-dropdown" [(ngModel)]="notificationData.activity.project_id" name="project_id" id="projectid"> 
+                                            <option *ngFor = "let project of projectsList" [value]="project.id">{{project.name}}</option> 
+                                          </select>                                 
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <input class="form-control text-color" placeholder="Activity" id="name" name ="name"  type="text" [(ngModel)]="notificationData.activity.name">
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <input class="form-control text-color" placeholder="Hours" id="hour" name="hours"  [(ngModel)]="notificationData.activity.hours" type="text">
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-success" (click)="onCreate(notification.id)">Create</button>
+                            <button type="button" class="btn btn-danger" id="cancel" (click)="modal.close('modal.dismiss')">Cancel</button>
+                          </div>
+                      </ng-template>
                   </li>
                 </ol>
             </div>

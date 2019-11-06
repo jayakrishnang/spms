@@ -39,6 +39,11 @@ export class DashboardService {
     return this.httpService.postActivityCreate(url, formdata);
   }
 
+  createActivity(data){
+    const url = EndPoints.BASE_URL + EndPoints.Activity
+    return this.httpService.post(url,data);
+  }
+
   updateActivity(project, activity, hours, date,id){
     const url = EndPoints.BASE_URL + EndPoints.Activity + '/' + id;
     const formdata: FormData = new FormData();
@@ -52,6 +57,12 @@ export class DashboardService {
   getUserProfile(){
     const url = EndPoints.BASE_URL + EndPoints.UserProfile
     return this.httpService.get(url);
+  }
+
+  setRead(body){
+    const url = EndPoints.BASE_URL + EndPoints.SetRead
+    return this.httpService.post(url,body);
+   
   }
 }
 

@@ -19,7 +19,7 @@ export class UserProfileService {
     return this.httpService.get(url);
   }
 
-  patchUserUpdate(name, email, password, default_project, profile_image, id){
+  patchUserUpdate(name, email, password, default_project, profile_image, id,git_emails){
     const url = EndPoints.BASE_URL + EndPoints.UserUpdate + '/' + id
     const formData: FormData = new FormData();
     formData.append('name', name);
@@ -27,6 +27,7 @@ export class UserProfileService {
     formData.append('password', password);
     formData.append('default_project', default_project)
     formData.append('profile_image', profile_image)
+    formData.append('git_emails', git_emails)
     return this.httpService.postFileUpload(url, formData);
     // return this.http.post(url, formData);
   }

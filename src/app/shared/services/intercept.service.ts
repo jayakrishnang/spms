@@ -34,24 +34,24 @@ export class InterceptService implements HttpInterceptor {
 		console.log(fromPage)
 		if (request.headers.has('Component-Page')) {
 			console.log('entered component')
-			request = request.clone({ url: request.url.replace('http://', 'https://'), setHeaders: { 'Content-Type': 'application/json' } });
+			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { 'Content-Type': 'application/json' } });
 			// request = request.clone({ url: request.url.replace('http://', 'https://') , setHeaders: { Accept: 'application/json', Authorization: this.authToken } });
 		} else if(request.headers.has('Form-Data')) {
 			console.log('entered form data')
-			request = request.clone({ url: request.url.replace('http://', 'https://'), setHeaders: { Authorization: this.authToken} });
+			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { Authorization: this.authToken} });
 		}
 		 else if(request.headers.has('Content-Type')) 
 		 {	
 			console.log('in application/json')
-			request = request.clone({ url: request.url.replace('http://', 'https://'), setHeaders: { Authorization: this.authToken , 'Content-Type' :'application/json'} }); 
+			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { Authorization: this.authToken , 'Content-Type' :'application/json'} }); 
 		 }
 		else if(request.headers.has('Login-Type')){
 			console.log('logout intercept')
-			request = request.clone({ url: request.url.replace('http://', 'https://'), setHeaders: { 'Content-Type': 'application/json' } });
+			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { 'Content-Type': 'application/json' } });
 		}
 		else {
 			console.log('entered else')	
-			request = request.clone({ url: request.url.replace('http://', 'https://'), setHeaders: { 'Content-Type': 'application/json' , Authorization: this.authToken , 'Accept' :'application/json'} });
+			request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { 'Content-Type': 'application/json' , Authorization: this.authToken , 'Accept' :'application/json'} });
 			// request = request.clone({ url: request.url.replace('http://', 'http://'), setHeaders: { 'Content-Type': 'application/json', Authorization: this.authToken } });
 		}
 
