@@ -1,4 +1,4 @@
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 400px; background-image: url(assets/img/time.jpg); background-size: cover; background-position: center top;">
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 400px; background-image: url(assets/img/approved.jpg); background-size: cover; background-position: center top;">
   <span class="mask bg-gradient-danger opacity-8"></span>
   
 
@@ -15,7 +15,7 @@
       <div class="col">
         <div class="card shadow">
           <div class="card-header border-0">
-            <h3 class="mb-0">Pending Approvals</h3>
+            <h3 class="mb-0">Approved Sheets </h3>
           </div>
           <div class="table-responsive">
             <table class="table align-items-center table-flush">
@@ -26,44 +26,47 @@
                   <th  class="td-padding"scope="col"style="text-align: center;">Created Date</th>
                   <th class="td-padding" scope="col"style="text-align: center;">Hours</th>
                   <th  class="th-padding"scope="col"style="text-align: center;">Total Activities</th>
+                  <th  class="th-padding"scope="col"style="text-align: center;">Status</th>
+
                   <th></th>
                 </tr>
               </thead>
-                <tr *ngFor= "let approval of PendingApproval| paginate: { itemsPerPage: 10, currentPage: p };">
+                <tr *ngFor= "let approved of ApprovedSheets| paginate: { itemsPerPage: 10, currentPage: p };">
+                 
                   <td  class="th-padding" style="text-align: center;">
-                    <span class= "center">{{approval.sheet_name}}</span>
+                    <span class= "center">{{approved.sheet_name}}</span>
                   </td>
                   <td  class="th-padding"style="text-align: center;" >
                       <span class= "center">
-                       {{approval.sender_name}}
+                       {{approved.sender_name}}
                     </span>
                   </td>
                   <td  class="th-padding"style="text-align: center;" >
                       <span class= "center">
-                       {{approval.sheet_created_date | date}}
+                       {{approved.sheet_created_date | date}}
                     </span>
                   </td>
                   <td  class="th-padding"style="text-align: center;" >
                       <span class= "center">
-                       {{approval.sheet_hours}}
+                       {{approved.sheet_hours}}
                     </span>
                   </td>
                   <td  class="th-padding"style="text-align: center;" >
                       <span class= "center">
-                       {{approval.total_activities}}
+                       {{approved.total_activities}}
                     </span>
                   </td>
-                  <td  class="button-padding">
-                  <button [routerLink]="[ '/pendingapprovalshow',approval.sheet_id]" class="button "  type="submit">View</button>
-                  </td>
+                  <td  class="th-padding"style="text-align: center;" >
+                    <span class= "center">
+                     {{approved.status}}
+                  </span>
+                </td>
                 </tr>
             </table>
           </div>
-          <div>
+          <div></div>
               <div class="align-right"> <pagination-controls (pageChange)="p = $event"></pagination-controls>
-
           </div>
-         
           </div>
         </div>
       </div>

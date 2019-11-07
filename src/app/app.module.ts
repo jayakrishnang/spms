@@ -25,6 +25,8 @@ import { PendingApprovalsService } from './pages/pending-approvals/pending-appro
 import { ActivityService } from './pages/activities/activity_service';
 import { ActivityCreate } from './shared/models/activity';
 import { Filter } from './shared/models/filter';
+import { RejectedSheetsService } from './pages/rejected-sheets/rejected-sheets.service';
+import { ApprovedSheetsService } from './pages/approved-sheets/approved-sheets.service';
 
 
 @NgModule({
@@ -43,7 +45,7 @@ import { Filter } from './shared/models/filter';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent  
+    AuthLayoutComponent,
   ],
   providers: [
     UserLogin,
@@ -54,6 +56,8 @@ import { Filter } from './shared/models/filter';
     SheetsService,
     SheetsShowService,
     PendingApprovalsService,
+    RejectedSheetsService,
+    ApprovedSheetsService,
     Filter,
     ActivityService,
     InterceptService,

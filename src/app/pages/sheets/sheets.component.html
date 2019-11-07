@@ -1,5 +1,5 @@
 
-    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 400px; background-image: url(assets/img/new.jpg); background-size: cover; background-position: center top;">
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 400px; background-image: url(assets/img/nnn.jpg); background-size: cover; background-position: center top;">
       <span class="mask bg-gradient-danger opacity-8"></span>
     <div class="container-fluid">
       <div class="header-body">
@@ -20,21 +20,22 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th class= "th-padding" scope="col"style="text-align: center;">sl.no</th>
                   <th  class="th-padding"scope="col"style="text-align: center;">Name</th>
+                  <th  class="th-padding"scope="col"style="text-align: center;">Date</th>
                   <th class="th-padding" scope="col"style="text-align: center;">Hours</th>
                   <th  class="td-padding"scope="col"style="text-align: center;">Status</th>
                   <th class="td-padding" scope="col">Total Activities</th>
                   <th  class="th-padding"scope="col"></th>
                 </tr>
               </thead>
-                <tr *ngFor= "let sheet of Sheetslist | paginate: { itemsPerPage: 10, currentPage: p }; let i = index ">
-                  <td class="th-padding" style="text-align: center;">
-                    <span class= "center" > {{i+1}}</span>
-                  </td>
+                <tr *ngFor= "let sheet of Sheetslist | paginate: { itemsPerPage: 10, currentPage: p };">
                   <td  class="th-padding" style="text-align: center;">
                     <span class= "center">{{sheet.name}}</span>
                   </td>
+                  <td  class="th-padding"style="text-align: center;" >
+                    <span class= "center">
+                     {{sheet.created_at |date}}
+                  </span>
                   <td  class="th-padding"style="text-align: center;" >
                       <span class= "center">
                        {{sheet.hours}}
@@ -48,7 +49,6 @@
                   <td  class="th-padding" >   
                     <span class= "center"> {{sheet.no_of_activities}}</span>   
                   </td>
-                 
                   <td  class="button-padding">
                    <button [routerLink]="[ '/sheetcontent',sheet.id]" class="button"  type="submit">View</button>
                   </td>
