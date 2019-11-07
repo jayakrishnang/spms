@@ -11,6 +11,8 @@ import { PendingApprovalsComponent } from 'src/app/pages/pending-approvals/pendi
 import { PendingApprovalsShowComponent } from 'src/app/pages/pending-approvals-show/pending-approvals-show.component';
 import { ProjectComponent } from 'src/app/pages/project/project.component';
 import { ActivitiesComponent } from 'src/app/pages/activities/activities.component';
+import { RejectedSheetsComponent } from 'src/app/pages/rejected-sheets/rejected-sheets.component';
+import { ApprovedSheetsComponent } from 'src/app/pages/approved-sheets/approved-sheets.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -23,5 +25,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'pendingapprovals',         component:PendingApprovalsComponent },
     { path: 'pendingapprovalshow/:id', component: PendingApprovalsShowComponent},
     { path: 'project',        component: ProjectComponent},
-    { path: 'activities',     component: ActivitiesComponent}
+    { path: 'activities',     component: ActivitiesComponent},
+    { path: 'rejected-sheets',   component:RejectedSheetsComponent},
+    { path: 'approved-sheets',   component:ApprovedSheetsComponent},
+
 ];

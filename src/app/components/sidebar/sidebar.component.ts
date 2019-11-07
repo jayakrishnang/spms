@@ -14,6 +14,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/activities', title: 'Activities',  icon:'ni ni-watch-time text-black', class: '' },
     { path: '/sheets', title: 'Sheets',  icon:'ni-bullet-list-67 text-red', class: '' },
     { path: '/pendingapprovals', title: 'Pending Approvals',  icon:'fas fa-hourglass-end text-yellow', class: '' },
+    { path: '/approved-sheets', title: 'Approved Sheets',  icon:'fas fa-check-circle text-green', class: '' },
+    { path: '/rejected-sheets', title: 'Rejected Sheets',  icon:'fas fa-exclamation-triangle text-red', class: '' },
     { path: '/project', title: 'Projects', icon: 'ni ni-folder-17 text-orange', class: ''},
     { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-green', class: '' },
 ];

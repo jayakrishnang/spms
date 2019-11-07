@@ -38,7 +38,6 @@ import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { RejectedSheetsComponent } from 'src/app/pages/rejected-sheets/rejected-sheets.component';
 import { ApprovedSheetsComponent } from 'src/app/pages/approved-sheets/approved-sheets.component';
 import { NotificationCreate } from 'src/app/shared/models/notificaton';
-import { TagInputModule } from 'ngx-chips';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -61,9 +60,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(), 
     ClipboardModule,
-    SelectDropDownModule,
-    TagInputModule
-  ],
+    SelectDropDownModule
+    ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,

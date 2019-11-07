@@ -57,7 +57,6 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th class= "th-padding" scope="col"style="text-align: center;">sl.no</th>
                   <th  class="th-padding"scope="col"style="text-align: center;">Project</th>
                   <th class="th-padding" scope="col"style="text-align: center;">Date</th>
                   <th  class="td-padding"scope="col"style="text-align: center;">Activity</th>
@@ -65,10 +64,7 @@
                   <th  class="th-padding"scope="col"></th>
                 </tr>
               </thead>
-                <tr *ngFor= "let activity of PendingSheetContent; let i = index">
-                  <td class="th-padding" style="text-align: center;">
-                    <span class= "center" > {{i+1}}</span>
-                  </td>
+                <tr *ngFor= "let activity of PendingSheetContent;">
                   <td  class="th-padding" style="text-align: center;">
                     <span class= "center">{{activity.project}}</span>
                   </td>
