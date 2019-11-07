@@ -19,6 +19,11 @@ export class UserProfileService {
     return this.httpService.get(url);
   }
 
+  getGitMails(){
+    const url = EndPoints.BASE_URL + EndPoints.GitMails;
+    return this.httpService.get(url);
+  }
+
   patchUserUpdate(name, email, password, default_project, profile_image, id,git_emails){
     const url = EndPoints.BASE_URL + EndPoints.UserUpdate + '/' + id
     const formData: FormData = new FormData();

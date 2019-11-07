@@ -31,7 +31,8 @@ export const EndPoints = {
     DashboardActivities: 'activities/get_activities',
     RejectedSheets:'rejected_sheets',
     ApprovedSheets:'approved_sheets',
-    SetRead:'dashboards/set_read'
+    SetRead:'dashboards/set_read',
+    GitMails: 'dashboards/git_mails'
 
     
 }

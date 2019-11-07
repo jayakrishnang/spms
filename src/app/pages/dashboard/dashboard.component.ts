@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(private dashboardService: DashboardService,private modalService: NgbModal, private formBuilder: FormBuilder, private toaster: ToastrService, private notificationCreate: NotificationCreate) {}
   open(content,project,activity,date,type) {
-    if (type == 0 || type == 4)
+    if (type == 'GitHub' || type == 'GitLab')
       {
       this.modalService.open(content, this.modalOptions).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -125,30 +125,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
  
   getColor(notification_type) { 
     switch (notification_type) {
-      case 0:
+      case 'GitHub':
         return 'blue';
-      case 1:
+      case 'Approved':
         return 'green';
-      case 2:
+      case 'Rejected':
         return 'red';
-      case 3:
+      case 'Pending_approval':
         return 'yellow';
-      case 4:
+      case 'GitLab':
         return 'blue';
     }
   }
 
   getIcon(notification_type) { 
     switch (notification_type) {
-      case 0:
+      case 'GitHub':
         return "\uf09b";
-      case 1:
+      case 'Approved':
         return "\uf00c";
-      case 2:
+      case 'Rejected':
         return "\uf06a";
-      case 3:
+      case 'Pending_approval':
         return "\uf253";
-      case 4:
+      case 'GitLab':
         return "\uf296";
     }
   }
