@@ -40,29 +40,23 @@ export class UserProfileComponent implements OnInit {
       git_emails: ''
     });
     this.loadProjects();
-    this.loadGitMails();
     this.loadUserProfile();
   }
 
-  loadGitMails(){
+  loadUserProfile(){
     this.subscription = this.userprofileService.getGitMails().subscribe(data =>{
       this.git_email_data = data.data.git_emails;
       for (let i = 0; i < this.git_email_data.length; i++) {
         this.git_email_list.push(this.git_email_data[i].git_email);
       }
       this.git_email_string = this.git_email_list.join(",");
-      console.log(this.git_email_string)
     })
-  }
-
-  loadUserProfile(){
     this.subscription = this.userprofileService.getUserProfile().subscribe(data => {
       this.UserProfile = data.data.user;
       this.prefillUser = data.data.user;
       this.uploadForm.get('name').setValue(this.prefillUser.name);
       this.uploadForm.get('email').setValue(this.prefillUser.email);
       this.uploadForm.get('default_project').setValue(this.prefillUser.default_project);
-      console.log(this.git_email_string)
       this.uploadForm.get('git_emails').setValue(this.git_email_string);
     })
 
