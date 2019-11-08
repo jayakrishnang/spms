@@ -57,10 +57,9 @@ export class UserProfileComponent implements OnInit {
       this.uploadForm.get('name').setValue(this.prefillUser.name);
       this.uploadForm.get('email').setValue(this.prefillUser.email);
       this.uploadForm.get('default_project').setValue(this.prefillUser.default_project);
+      console.log(this.git_email_string)
       this.uploadForm.get('git_emails').setValue(this.git_email_string);
     })
-
-    
   }
   onFileSelect(event) {
     if (event.target.files.length > 0) {
@@ -94,10 +93,11 @@ export class UserProfileComponent implements OnInit {
             positionClass: 'toast-bottom-left'
           });
         window.location.reload();
-      } 
+      }
      },
       (err) => console.log(err)
     );
+    this.loadUserProfile();
   }
   
   
