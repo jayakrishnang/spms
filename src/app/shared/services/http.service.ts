@@ -58,11 +58,20 @@ export class HttpService {
         return this.http.patch(url, fmd, {headers : headers});
     }
 
+    patchResetPassword(url: string, fmd:FormData): Observable<any> {
+        let headers = new HttpHeaders({
+            'Form-Data': 'application/json'
+        });
+        //    headers.set('Content-Type', 'multipart/form-data');
+       //    headers.set('Accept', 'application/json');
+        return this.http.patch(url, fmd, {headers : headers});
+    }
+    
     postApproval(url, body): Observable<any> {
        let headers = new HttpHeaders({
         'Content-Type': 'application/json'
     });    //    headers.set('Content-Type', 'multipart/form-data');
-    //    headers.set('Accept', 'application/json');
+          //    headers.set('Accept', 'application/json');
         return this.http.post(url, body, {headers : headers});
     }
 

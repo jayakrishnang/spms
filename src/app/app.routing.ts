@@ -45,7 +45,11 @@ const routes: Routes =[
   {
     path: 'activities',
     redirectTo: 'activities'
-  }
+  },
+  {
+    path: 'forgot-password',
+    redirectTo: 'forgot-password'
+  },
 ];
 
 @NgModule({

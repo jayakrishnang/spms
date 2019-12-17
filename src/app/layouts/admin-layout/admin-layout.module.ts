@@ -4,11 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { MyDatePickerModule } from 'mydatepicker';
-
-
-
 import { ClipboardModule } from 'ngx-clipboard';
-
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { IconsComponent } from '../../pages/icons/icons.component';
@@ -38,6 +34,8 @@ import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { RejectedSheetsComponent } from 'src/app/pages/rejected-sheets/rejected-sheets.component';
 import { ApprovedSheetsComponent } from 'src/app/pages/approved-sheets/approved-sheets.component';
 import { NotificationCreate } from 'src/app/shared/models/notificaton';
+import { ForgotPassword } from 'src/app/shared/models/forgot_password';
+import { ForgotPasswordComponent } from 'src/app/pages/forgot-password/forgot-password.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -78,7 +76,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RejectedSheetsComponent,
     ApprovedSheetsComponent
     ],
-    providers: [AuthenticationService, Approval,NotificationCreate,   
+    providers: [AuthenticationService, Approval,NotificationCreate,ForgotPassword,   
       {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

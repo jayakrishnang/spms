@@ -27,6 +27,8 @@ import { ActivityCreate } from './shared/models/activity';
 import { Filter } from './shared/models/filter';
 import { RejectedSheetsService } from './pages/rejected-sheets/rejected-sheets.service';
 import { ApprovedSheetsService } from './pages/approved-sheets/approved-sheets.service';
+import { ForgotPasswordService } from './pages/forgot-password/forgot-password.service';
+import { ResetPasswordService } from './pages/reset-password/reset-password.service';
 
 
 @NgModule({
@@ -58,6 +60,8 @@ import { ApprovedSheetsService } from './pages/approved-sheets/approved-sheets.s
     PendingApprovalsService,
     RejectedSheetsService,
     ApprovedSheetsService,
+    ForgotPasswordService,
+    ResetPasswordService,
     Filter,
     ActivityService,
     InterceptService,
