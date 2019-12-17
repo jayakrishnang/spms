@@ -13,6 +13,8 @@ import { ProjectComponent } from 'src/app/pages/project/project.component';
 import { ActivitiesComponent } from 'src/app/pages/activities/activities.component';
 import { RejectedSheetsComponent } from 'src/app/pages/rejected-sheets/rejected-sheets.component';
 import { ApprovedSheetsComponent } from 'src/app/pages/approved-sheets/approved-sheets.component';
+import { ForgotPasswordComponent } from 'src/app/pages/forgot-password/forgot-password.component';
+import { AuthGuardService } from 'src/app/shared/services/auth-guard.service';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -27,6 +29,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'project',        component: ProjectComponent},
     { path: 'activities',     component: ActivitiesComponent},
     { path: 'rejected-sheets',   component:RejectedSheetsComponent},
-    { path: 'approved-sheets',   component:ApprovedSheetsComponent},
-
+    { path: 'approved-sheets',   component:ApprovedSheetsComponent}
 ];

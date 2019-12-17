@@ -60,7 +60,7 @@ export class DashboardService {
   }
 
   setRead(body){
-    const url = EndPoints.BASE_URL + EndPoints.SetRead
+    const url = EndPoints.BASE_URL + EndPoints.SetRead + "/"
     return this.httpService.post(url,body);
    
   }

@@ -9,11 +9,17 @@ import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 import { InterceptService } from 'src/app/shared/services/intercept.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ForgotPasswordComponent } from 'src/app/pages/forgot-password/forgot-password.component';
+import { ForgotPasswordService } from 'src/app/pages/forgot-password/forgot-password.service';
+import { ForgotPassword } from 'src/app/shared/models/forgot_password';
+import { ResetPasswordComponent } from 'src/app/pages/reset-password/reset-password.component';
+import { ResetPasswordService } from 'src/app/pages/reset-password/reset-password.service';
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AuthLayoutRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
     // NgbModule
   ],
   providers: [
@@ -22,11 +28,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 			provide: HTTP_INTERCEPTORS,
 			useClass: InterceptService,
 			multi: true
-		},
+    },ForgotPasswordService, ForgotPassword,ResetPasswordService
 	],
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent,ResetPasswordComponent
   ]
 })
 export class AuthLayoutModule { }
